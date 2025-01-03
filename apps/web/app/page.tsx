@@ -8,7 +8,7 @@ export default function Web() {
   return (
     <div className={styles.container}>
       <h1>Web</h1>
-      <Button onClick={() => console.log("Pressed!")} text="Boop" />
+      <Button onClick={() => console.log("Pressed!")}>Text</Button>
     </div>
   );
 }
