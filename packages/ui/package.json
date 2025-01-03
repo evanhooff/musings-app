@@ -4,8 +4,9 @@
   "sideEffects": false,
   "license": "MIT",
   "scripts": {
-    "build": "node helpers/generate-exports.js & tsup",
-    "dev": "node helpers/generate-exports.js & tsup --watch",
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "generate": "node helpers/generate-exports.js",
     "lint": "eslint . --max-warnings 0",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },

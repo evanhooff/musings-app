@@ -6,8 +6,7 @@
     "access": "public"
   },
   "scripts": {
-    "dev": "node helpers/generate-exports.js",
-    "build": "node helpers/generate-exports.js"
+    "update": "node helpers/generate-exports.js"
   },
   "exports": {
     "./base": {
