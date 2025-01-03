@@ -4,5 +4,36 @@
   "private": true,
   "publishConfig": {
     "access": "public"
+  },
+  "scripts": {
+    "dev": "node helpers/generate-exports.js",
+    "build": "node helpers/generate-exports.js"
+  },
+  "exports": {
+    "./base": {
+      "types": "./configs/base.json",
+      "import": "./configs/base.json",
+      "require": "./configs/base.json"
+    },
+    "./nextjs": {
+      "types": "./configs/nextjs.json",
+      "import": "./configs/nextjs.json",
+      "require": "./configs/nextjs.json"
+    },
+    "./react-app": {
+      "types": "./configs/react-app.json",
+      "import": "./configs/react-app.json",
+      "require": "./configs/react-app.json"
+    },
+    "./react-library": {
+      "types": "./configs/react-library.json",
+      "import": "./configs/react-library.json",
+      "require": "./configs/react-library.json"
+    },
+    "./react-native-library": {
+      "types": "./configs/react-native-library.json",
+      "import": "./configs/react-native-library.json",
+      "require": "./configs/react-native-library.json"
+    }
   }
 }

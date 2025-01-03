@@ -1,0 +1,11 @@
+{
+    "name": "@repo/prettier-config",
+    "version": "0.0.0",
+    "exports": {
+      ".": "./prettierrc.js"
+    },
+    "devDependencies": {
+      "prettier": "3.4.1",
+      "prettier-plugin-tailwindcss": "^0.6.9"
+    }
+  }
