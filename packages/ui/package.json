@@ -6,7 +6,6 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "update": "node helpers/generate-exports.js",
     "lint": "eslint . --max-warnings 0",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
@@ -26,10 +25,8 @@
     "access": "public"
   },
   "exports": {
-    "./button": {
-      "types": "./src/button.tsx",
-      "import": "./dist/button.mjs",
-      "require": "./dist/button.js"
-    }
+    "types": "./src/index.tsx",
+    "import": "./dist/index.mjs",
+    "require": "./dist/index.js"
   }
 }
