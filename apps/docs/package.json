@@ -12,11 +12,14 @@
   },
   "dependencies": {
     "@repo/ui": "workspace:*",
+    "@tailwindcss/vite": "^4.1.5",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tailwindcss": "^4.1.5"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
     "@storybook/addon-actions": "^8.2.6",
     "@storybook/addon-essentials": "^8.2.6",
     "@storybook/addon-links": "^8.2.6",
@@ -26,7 +29,6 @@
     "eslint": "^8.57.0",
     "serve": "^14.2.1",
     "storybook": "^8.2.6",
-    "@repo/typescript-config": "workspace:*",
     "typescript": "^5.5.4",
     "vite": "^5.1.4"
   }
