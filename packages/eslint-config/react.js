@@ -1,6 +1,6 @@
 const { resolve } = require("node:path");
 
-const project = resolve(process.cwd(), "tsconfig.json");
+const project = resolve(process.cwd(), "./../typescript-config/configs/react-app.json");
 
 /*
  * This is a custom ESLint configuration for use a library
@@ -13,10 +13,13 @@ const project = resolve(process.cwd(), "tsconfig.json");
 
 module.exports = {
   extends: [
-    "@vercel/style-guide/eslint/browser",
-    "@vercel/style-guide/eslint/typescript",
-    "@vercel/style-guide/eslint/react",
-  ].map(require.resolve),
+    ...[
+      "@vercel/style-guide/eslint/node",
+      "@vercel/style-guide/eslint/typescript",
+      "@vercel/style-guide/eslint/browser",
+      "@repo/typescript-config/react-app",
+    ].map(require.resolve),
+  ],
   parserOptions: {
     project,
   },

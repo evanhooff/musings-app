@@ -5,7 +5,8 @@
       ".": "./prettierrc.js"
     },
     "devDependencies": {
-      "prettier": "3.4.1",
+      "@vercel/style-guide": "^5.2.0",
+      "prettier": "@vercel/style-guide/prettier",
       "prettier-plugin-tailwindcss": "^0.6.9"
     }
   }
