@@ -6,7 +6,6 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { Text } from 'react-native';
 
-import "./global.css";
 export default function HomeScreen() {
   return (
     <ParallaxScrollView

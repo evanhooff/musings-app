@@ -1,7 +1,0 @@
-{
-  "presets": [
-    ["babel-preset-expo", { "jsxImportSource": "nativewind" }],
-    "nativewind/babel",
-    ["@babel/preset-typescript", { "ignoreExtensions": true }]
-  ],
-}
