@@ -1,9 +1,9 @@
 "use client";
 
 import { Button } from "@repo/ui";
-import Link from 'next/link';
+import Link from "next/link";
+import { ReactNode } from "react";
 
-import styles from "../styles/index.module.css";
 import { tv } from 'tailwind-variants';
  
 const button = tv({
@@ -31,14 +31,11 @@ const button = tv({
   }
 });
 
-export default function Web() {
+export default function Page() {
   return (
-    <div className={styles.container}>
-      <h1>Web</h1>
-      {/* <Button
-        className={button({ size: 'sm', color: 'secondary' })}
-        onClick={() => console.log("Pressed!")}>Text</Button> */}
-        <Link href="/sub" className={button({ size: 'sm', color: 'secondary' })}>Page</Link>
+    <div>
+      <h1>Page</h1>
+      <Link href="/" className={button({ size: 'md', color: 'primary' })}>Home</Link>
     </div>
   );
 }
