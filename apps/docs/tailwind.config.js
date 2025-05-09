@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
+const sharedConfig = require('@repo/ui/tailwind.config.js');
+
 module.exports = {
-    content: ['./stories/**/*.{js,ts,jsx,tsx,mdx}'],
+  ...sharedConfig,
+    content: [
+      './stories/*.{js,ts,jsx,tsx,mdx}', 
+    ],
     theme: {
       extend: {},
     },
