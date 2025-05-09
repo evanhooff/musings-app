@@ -31,9 +31,11 @@
     "access": "public"
   },
   "exports": {
-    "css": "./dist/index.css",
-    "types": "./src/index.tsx",
-    "import": "./dist/index.mjs",
-    "require": "./dist/index.js"
+    ".": {
+      "types": "./src/index.tsx",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./css": "./dist/index.css"
   }
 }

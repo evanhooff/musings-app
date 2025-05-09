@@ -29,6 +29,7 @@
     "@tailwindcss/postcss": "^4.1.5",
     "@vitejs/plugin-react": "^4.2.1",
     "eslint": "^8.57.0",
+    "postcss-import": "^16.1.0",
     "serve": "^14.2.1",
     "storybook": "^8.2.6",
     "typescript": "^5.5.4",
