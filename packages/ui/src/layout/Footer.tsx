@@ -1,6 +1,6 @@
 import { tv, VariantProps } from "tailwind-variants";
-import { Skeleton } from "../skeleton";
 import { cn } from "../../helpers/cn";
+import { Skeleton } from "../skeleton";
 
 interface FooterProps extends VariantProps<typeof footerStyle> {
     className?: string;

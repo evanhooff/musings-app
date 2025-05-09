@@ -1,9 +1,4 @@
-/** @type {import("eslint").Linter.Config} */
+/** @type {import("@repo/eslint-config").Linter.Config} */
 module.exports = {
-  extends: [
-    "@vercel/style-guide/eslint/node",
-    "@vercel/style-guide/eslint/typescript",
-    "@vercel/style-guide/eslint/browser",
-    "@repo/eslint-config/storybook.js"
-  ],
+  extends: ["@repo/eslint-config/storybook"],
 };

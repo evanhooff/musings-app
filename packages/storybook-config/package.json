@@ -1,0 +1,7 @@
+{
+  "name": "@repo/storybook-config",
+  "version": "0.0.0",
+  "devDependencies": {
+    "@vercel/style-guide": "^5.2.0"
+  }
+}
