@@ -11,16 +11,19 @@
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
-    "eslint": "^8.57.0",
     "@vercel/style-guide": "^5.2.0",
-    "@repo/typescript-config": "workspace:*",
+    "eslint": "^8.57.0",
     "tsup": "^8.0.2",
     "typescript": "^5.5.4"
   },
   "dependencies": {
-    "react": "^18.2.0"
+    "clsx": "^2.1.1",
+    "react": "^18.2.0",
+    "tailwind-merge": "^3.2.0",
+    "tailwindcss": "^4.1.5"
   },
   "publishConfig": {
     "access": "public"
