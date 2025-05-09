@@ -23,7 +23,6 @@ type Story = StoryObj<typeof Button>;
 export const Primary: Story = {
   render: (props) => (
     <Button
-      className="bg-blue-500 text-white hover:bg-blue-600"
       {...props}
       onClick={(): void => {
         // eslint-disable-next-line no-alert -- alert for demo
@@ -36,6 +35,26 @@ export const Primary: Story = {
   name: "Button",
   args: {
     children: "Hello",
+    type: "button",
+  },
+};
+
+export const Custom: Story = {
+  render: (props) => (
+    <Button
+      className="bg-blue-500 text-white hover:bg-blue-600"
+      {...props}
+      onClick={(): void => {
+        // eslint-disable-next-line no-alert -- alert for demo
+        alert("Hello from Turborepo!");
+      }}
+    >
+      Hello
+    </Button>
+  ),
+  name: "Custom",
+  args: {
+    children: "Custom",
     type: "button",
   },
 };

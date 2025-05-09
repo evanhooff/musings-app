@@ -28,7 +28,7 @@ const Header: React.FC<HeaderProps> = ({ children, className, alignment }) => {
     );
 };
 
-export const HeaderSkeleton: React.FC<HeaderProps> = ({ className, alignment }) => {
+const HeaderSkeleton: React.FC<HeaderProps> = ({ className, alignment }) => {
     return (
         <header className={cn(headerVariants({ alignment }), className)}>
             <Skeleton className="w-full h-full bg-gray-300/20"></Skeleton>
@@ -36,4 +36,4 @@ export const HeaderSkeleton: React.FC<HeaderProps> = ({ className, alignment }) 
     );
 };
 
-export default Header;
+export { HeaderSkeleton, Header };

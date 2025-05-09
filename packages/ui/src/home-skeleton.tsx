@@ -1,6 +1,6 @@
 import React from "react";
-import { NavigationSkeleton } from "./components/Navigation";
-import { FooterSkeleton } from "./components/Footer";
+import { Navigation, NavigationSkeleton } from "./components/Navigation";
+import { Footer, FooterSkeleton } from "./components/Footer";
 import { tv } from "tailwind-variants";
 
 const homeLayout = tv({
@@ -48,9 +48,9 @@ const HomeSkeleton = ({
 
   return (
     <div className={style}>
-      <NavigationSkeleton />
+      <Navigation />
       <div className="grow">{children}</div>
-      <FooterSkeleton />
+      <Footer />
     </div>
   );
 };

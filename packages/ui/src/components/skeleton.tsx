@@ -1,8 +1,6 @@
 
 
 import { cn } from "../../helpers/cn";
-import "./../../styles/global.css";
-
 function Skeleton({
   className,
   ...props

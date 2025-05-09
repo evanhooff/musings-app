@@ -27,7 +27,7 @@ const Navigation: React.FC<NavigationProps> = ({ className, alignment }) => {
     );
 };
 
-export const NavigationSkeleton: React.FC<NavigationProps> = ({ className, alignment }) => {
+const NavigationSkeleton: React.FC<NavigationProps> = ({ className, alignment }) => {
     return (
         <nav className={cn(navigationStyle({ alignment }), className)}>
             <Skeleton className="w-full h-full bg-gray-300/20"></Skeleton>
@@ -35,4 +35,4 @@ export const NavigationSkeleton: React.FC<NavigationProps> = ({ className, align
     );
 };
 
-export default Navigation;
+export { NavigationSkeleton, Navigation };

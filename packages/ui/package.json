@@ -20,6 +20,7 @@
     "typescript": "^5.5.4"
   },
   "dependencies": {
+    "@tailwindcss/postcss": "^4.1.5",
     "clsx": "^2.1.1",
     "react": "^18.2.0",
     "tailwind-merge": "^3.2.0",
@@ -30,6 +31,7 @@
     "access": "public"
   },
   "exports": {
+    "css": "./dist/index.css",
     "types": "./src/index.tsx",
     "import": "./dist/index.mjs",
     "require": "./dist/index.js"

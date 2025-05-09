@@ -27,7 +27,7 @@ const Footer: React.FC<FooterProps> = ({ className, alignment }) => {
     );
 };
 
-export const FooterSkeleton: React.FC<FooterProps> = ({ className, alignment }) => {
+const FooterSkeleton: React.FC<FooterProps> = ({ className, alignment }) => {
     return (
         <footer className={cn(footerStyle({ alignment }), className)}>
             <Skeleton className="w-full h-full"></Skeleton>
@@ -35,4 +35,4 @@ export const FooterSkeleton: React.FC<FooterProps> = ({ className, alignment }) 
     );
 };
 
-export default Footer;
+export { FooterSkeleton, Footer };

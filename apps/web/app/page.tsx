@@ -6,13 +6,14 @@ import Link from 'next/link';
 import styles from "../styles/index.module.css";
 import { tv } from 'tailwind-variants';
 import Header from '../components/Header';
+import { Button } from '@repo/ui';
  
 const button = tv({
   base: 'font-medium bg-blue-500 text-white rounded-full active:opacity-80',
   variants: {
     color: {
       primary: 'bg-blue-500 text-white',
-      secondary: 'bg-purple-500 text-white'
+      secondary: 'bg-green-500 text-white'
     },
     size: {
       sm: 'text-sm',
@@ -40,6 +41,7 @@ export default function Web() {
       </Header>
       <main>
         <div>
+          <Button onClick={() => console.log("Pressed!")}>UI Button</Button>
           {/* <Button
             className={button({ size: 'sm', color: 'secondary' })}
             onClick={() => console.log("Pressed!")}>Text</Button> */}

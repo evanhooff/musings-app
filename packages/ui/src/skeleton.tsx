@@ -1,5 +1,5 @@
 import { cn } from "../helpers/cn";
-import "../styles/global.css";
+import "../styles/ui.css";
 
 function Skeleton({
   className,

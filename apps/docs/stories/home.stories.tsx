@@ -1,4 +1,4 @@
-import { Button, HeaderSkeleton, HomeSkeleton } from "@repo/ui";
+import { Button, Header, HomeSkeleton } from "@repo/ui";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof HomeSkeleton> = {
@@ -17,12 +17,13 @@ export const Primary: Story = {
   render: (props) => (
     <HomeSkeleton {...props}>
         <>
-          <HeaderSkeleton>
+          <Header>
             Test
-          </HeaderSkeleton>
+          </Header>
           <main>
             <div>
               <Button
+              className="m-4 bg-green-500"
                 onClick={() => console.log("Pressed!")}>Text</Button>
             </div>
           </main>
@@ -31,11 +32,6 @@ export const Primary: Story = {
   ),
   name: "HomeSkeleton",
   args: {
-    children: (
-      <div className="flex flex-col items-center justify-center w-full h-full">
-        <div className="w-1/2 h-1/2 bg-gray-200 animate-pulse" />
-      </div>
-    ),
     direction: "ltr",
   },
 };
