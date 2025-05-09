@@ -1,10 +1,9 @@
-import "../styles/global.css";
-
-import Footer from "../components/Footer";
-import Navigation from "../components/Navigation";
+import React from "react";
+import { NavigationSkeleton } from "./components/Navigation";
+import { FooterSkeleton } from "./components/Footer";
 import { tv } from "tailwind-variants";
 
-export const homeLayout = tv({
+const homeLayout = tv({
     base: "flex min-h-screen",
     variants: {
         direction: {
@@ -34,24 +33,26 @@ export const homeLayout = tv({
     },
 });
 
-export default function RootLayout({
+
+const HomeSkeleton = ({
   children,
-}: { 
+  direction = "ltr",
+}: {
   children: React.ReactNode;
-}) {
-  const direction = "rtl"; // This can be dynamically set based on user preference or locale
-  const style = homeLayout({direction, layout: direction === "rtl" ? "row" : "column"});
+  direction?: "ltr" | "rtl";
+}) => {
+  const style = homeLayout({
+    direction,
+    layout: direction === "rtl" ? "row" : "column",
+  });
 
   return (
-    <html lang="en">
-      <head></head>
-      <body className={style}>  
-        <Navigation />
-        <div className="grow">
-          {children}
-        </div>
-        <Footer />
-      </body>
-    </html>
+    <div className={style}>
+      <NavigationSkeleton />
+      <div className="grow">{children}</div>
+      <FooterSkeleton />
+    </div>
   );
-}
+};
+
+export { HomeSkeleton };
