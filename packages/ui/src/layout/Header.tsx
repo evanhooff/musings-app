@@ -1,6 +1,6 @@
 import { tv, VariantProps } from "tailwind-variants";
 import { cn } from "../../helpers/cn";
-import { Skeleton } from "./skeleton";
+import { Skeleton } from "../skeleton";
 
 interface HeaderProps extends VariantProps<typeof headerVariants> {
     children: React.ReactNode;

@@ -3,6 +3,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof HomeSkeleton> = {
   component: HomeSkeleton,
+  parameters: {
+    layout: 'fullscreen',
+  },
   argTypes: {
     direction: {
       control: { type: "radio" },

@@ -1,9 +1,9 @@
 import React from "react";
-import { Navigation, NavigationSkeleton } from "./components/Navigation";
-import { Footer, FooterSkeleton } from "./components/Footer";
+import { Navigation, NavigationSkeleton } from "./layout/Navigation";
+import { Footer, FooterSkeleton } from "./layout/Footer";
 import { tv } from "tailwind-variants";
 
-const homeLayout = tv({
+export const homeLayout = tv({
     base: "flex min-h-screen",
     variants: {
         direction: {
@@ -33,25 +33,27 @@ const homeLayout = tv({
     },
 });
 
+interface HomeProps {
+  children: React.ReactNode;
+  direction?: "ltr" | "rtl";
+}
+
 
 const HomeSkeleton = ({
   children,
   direction = "ltr",
-}: {
-  children: React.ReactNode;
-  direction?: "ltr" | "rtl";
-}) => {
+}: HomeProps) => {
   const style = homeLayout({
     direction,
     layout: direction === "rtl" ? "row" : "column",
   });
 
   return (
-    <div className={style}>
+    <body className={style}>
       <Navigation />
       <div className="grow">{children}</div>
       <Footer />
-    </div>
+    </body>
   );
 };
 

@@ -1,57 +1,19 @@
 import "../styles/global.css";
+import '@repo/ui/css';
 
-import Footer from "../components/Footer";
-import Navigation from "../components/Navigation";
-import { tv } from "tailwind-variants";
-
-export const homeLayout = tv({
-    base: "flex min-h-screen",
-    variants: {
-        direction: {
-          ltr: "text-left",
-          rtl: "text-right",
-        },
-        layout: {
-          column: "flex-col",
-          row: "flex-row",
-        }
-    },
-    compoundVariants: [
-      {
-        direction: 'ltr',
-        layout: 'column',
-        class: 'bg-gray-100'
-      },
-      {
-        direction: 'rtl',
-        layout: 'row',
-        class: 'bg-green-100'
-      }
-    ],
-    defaultVariants: {
-      direction: "ltr",
-      layout: "column",
-    },
-});
+import { HomeSkeleton } from "@repo/ui";
 
 export default function RootLayout({
   children,
 }: { 
   children: React.ReactNode;
 }) {
-  const direction = "rtl"; // This can be dynamically set based on user preference or locale
-  const style = homeLayout({direction, layout: direction === "rtl" ? "row" : "column"});
+  const direction = "ltr"; // This can be dynamically set based on user preference or locale
 
   return (
     <html lang="en">
       <head></head>
-      <body className={style}>  
-        <Navigation />
-        <div className="grow">
-          {children}
-        </div>
-        <Footer />
-      </body>
+      <HomeSkeleton direction={direction}>{children}</HomeSkeleton>
     </html>
   );
 }

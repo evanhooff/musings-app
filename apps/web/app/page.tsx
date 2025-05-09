@@ -5,8 +5,7 @@ import Link from 'next/link';
 
 import styles from "../styles/index.module.css";
 import { tv } from 'tailwind-variants';
-import Header from '../components/Header';
-import { Button } from '@repo/ui';
+import { Button, Header } from '@repo/ui';
  
 const button = tv({
   base: 'font-medium bg-blue-500 text-white rounded-full active:opacity-80',
