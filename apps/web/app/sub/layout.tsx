@@ -1,11 +1,13 @@
+import { Skeleton } from "@repo/ui";
+
 export default function Layout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <main>
-      {children}
-    </main>
+    <div>
+        {children}
+    </div>
   );
 }

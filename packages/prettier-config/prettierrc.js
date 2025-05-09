@@ -1,4 +1,4 @@
-/** @type {import("prettier").Config} */
+/** @type {import("@repo/prettier-config").Config} */
 module.exports = {
     plugins: ['prettier-plugin-tailwindcss'],
     parser: 'typescript',
