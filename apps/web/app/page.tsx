@@ -6,6 +6,18 @@ import Link from 'next/link';
 import styles from "../styles/index.module.css";
 import { tv } from 'tailwind-variants';
 import { Button, Header } from '@repo/ui';
+
+import { performRequest } from '../lib/datocms';
+
+const PAGE_CONTENT_QUERY = `
+  query Page {
+    page {
+      title
+      structuredText {
+        value
+      }
+    }
+  }`;
  
 const button = tv({
   base: 'font-medium bg-blue-500 text-white rounded-full active:opacity-80',
@@ -32,7 +44,9 @@ const button = tv({
   }
 });
 
-export default function Web() {
+export default async function Web() {
+  const page = await performRequest(PAGE_CONTENT_QUERY);
+  console.log(page);
   return (
     <>
       <Header>

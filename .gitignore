@@ -47,3 +47,5 @@ storybook-static/
 pnpm-lock.yaml
 
 *.env
+.vercel
+.env*.local
