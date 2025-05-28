@@ -5,7 +5,7 @@ import { HomeSkeleton } from "@repo/ui";
 
 export default function RootLayout({
   children,
-}: { 
+}: {
   children: React.ReactNode;
 }) {
   const direction = "ltr"; // This can be dynamically set based on user preference or locale
@@ -13,7 +13,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head></head>
-      <HomeSkeleton direction={direction}>{children}</HomeSkeleton>
+      <HomeSkeleton direction={direction}>
+        <template>{children}</template>
+      </HomeSkeleton>
     </html>
   );
 }
