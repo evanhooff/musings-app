@@ -10,11 +10,9 @@
   },
   "dependencies": {
     "@repo/ui": "workspace:*",
-    "@repo/prettier-config": "workspace:*",
     "@tailwindcss/postcss": "^4.1.5",
     "next": "^14.0.4",
     "postcss": "^8.5.3",
-    "prettier": "link:@repo/prettier-config",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-native-web": "^0.19.10",
@@ -30,6 +28,7 @@
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.18",
     "babel-plugin-react-native-web": "^0.19.10",
+    "prettier": "link:@repo/prettier-config",
     "tailwind-merge": "^3.2.0",
     "tailwind-variants": "^1.0.0",
     "typescript": "^5.7.2"

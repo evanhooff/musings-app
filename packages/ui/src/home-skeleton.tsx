@@ -4,33 +4,33 @@ import { Footer, FooterSkeleton } from "./layout/Footer";
 import { tv } from "tailwind-variants";
 
 export const homeLayout = tv({
-    base: "flex min-h-screen",
-    variants: {
-        direction: {
-          ltr: "text-left",
-          rtl: "text-right",
-        },
-        layout: {
-          column: "flex-col",
-          row: "flex-row",
-        }
+  base: "flex min-h-screen",
+  variants: {
+    direction: {
+      ltr: "text-left",
+      rtl: "text-right",
     },
-    compoundVariants: [
-      {
-        direction: 'ltr',
-        layout: 'column',
-        class: 'bg-gray-100'
-      },
-      {
-        direction: 'rtl',
-        layout: 'row',
-        class: 'bg-green-100'
-      }
-    ],
-    defaultVariants: {
-      direction: "ltr",
-      layout: "column",
+    layout: {
+      column: "flex-col",
+      row: "flex-row",
+    }
+  },
+  compoundVariants: [
+    {
+      direction: 'ltr',
+      layout: 'column',
+      class: 'bg-gray-100'
     },
+    {
+      direction: 'rtl',
+      layout: 'row',
+      class: 'bg-green-100'
+    }
+  ],
+  defaultVariants: {
+    direction: "ltr",
+    layout: "column",
+  },
 });
 
 interface HomeProps {
