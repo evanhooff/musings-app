@@ -3,6 +3,11 @@
   "version": "0.0.0",
   "sideEffects": false,
   "license": "MIT",
+  "files": [
+    "postcss.config.mjs",
+    "tailwind.config.js",
+    "./dist/index.css"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -38,6 +43,8 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     },
-    "./css": "./dist/index.css"
+    "./css": "./dist/index.css",
+    "./postcss": "./postcss.config.mjs",
+    "./tailwind": "./tailwind.config.js"
   }
 }

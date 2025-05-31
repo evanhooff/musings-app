@@ -1,6 +1,6 @@
+import * as config from "@repo/ui/postcss";
 export default {
     plugins: {
-      "@tailwindcss/postcss": {},
+      ...config.plugins,
     }
   }
-  
