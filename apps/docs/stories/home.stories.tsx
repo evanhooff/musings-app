@@ -1,4 +1,4 @@
-import { Button, Header, HomeSkeleton } from "@repo/ui";
+import { Button, Header, HomeSkeleton, ContentSkeleton } from "@repo/ui";
 import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof HomeSkeleton> = {
@@ -18,17 +18,17 @@ export default meta;
 type Story = StoryObj<typeof HomeSkeleton>;
 export const Primary: Story = {
   render: (props) => (
-    <HomeSkeleton {...props}>
+    <HomeSkeleton>
         <>
           <Header>
             Test
           </Header>
           <main>
-            <div>
-              <Button
-              className="m-4 bg-green-500"
-                onClick={() => console.log("Pressed!")}>Text</Button>
-            </div>
+            <ContentSkeleton {...props}>
+                <div className="bg-black w-20 text-white">test</div>
+                <div className="bg-white grow">test</div>
+                <div className="bg-blue w-10 text-white">test</div>
+            </ContentSkeleton>
           </main>
         </>
     </HomeSkeleton>
