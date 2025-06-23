@@ -20,6 +20,7 @@
     "@react-navigation/bottom-tabs": "^7.2.0",
     "@react-navigation/elements": "^2.2.5",
     "@react-navigation/native": "^7.0.14",
+    "@repo/ui": "workspace:*",
     "expo": "~52.0.23",
     "expo-blur": "~14.0.1",
     "expo-constants": "~17.0.3",
@@ -40,20 +41,27 @@
     "react-native-safe-area-context": "4.12.0",
     "react-native-screens": "~4.4.0",
     "react-native-web": "~0.19.13",
-    "react-native-webview": "13.12.5"
+    "react-native-webview": "13.12.5",
+    "twrnc": "^4.8.0"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/prettier-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@babel/core": "^7.26.0",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/prettier-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
     "@types/jest": "^29.5.14",
     "@types/react": "^18.2.61",
     "@types/react-test-renderer": "^18.3.1",
+    "autoprefixer": "^10.4.21",
     "jest": "^29.7.0",
     "jest-expo": "~52.0.2",
+    "postcss": "^8.5.3",
     "prettier": "link:@repo/prettier-config",
     "react-test-renderer": "18.3.1",
+    "tailwindcss": "3.4.17",
     "typescript": "^5.7.2"
   },
   "private": true

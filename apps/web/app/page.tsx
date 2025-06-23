@@ -39,13 +39,11 @@ export default function Web() {
         <h1 className="text-blue-400 text-xl m-0">Web</h1>
       </Header>
       <main>
-        <div>
-          <Button onClick={() => console.log("Pressed!")}>UI Button</Button>
-          {/* <Button
-            className={button({ size: 'sm', color: 'secondary' })}
-            onClick={() => console.log("Pressed!")}>Text</Button> */}
-            <Link href="/sub" className={button({ size: 'sm', color: 'secondary' })}>Page</Link>
-        </div>
+        <Button onClick={() => console.log("Pressed!")}>UI Button</Button>
+        {/* <Button
+          className={button({ size: 'sm', color: 'secondary' })}
+          onClick={() => console.log("Pressed!")}>Text</Button> */}
+          <Link href="/sub" className={button({ size: 'sm', color: 'secondary' })}>Page</Link>
       </main>
     </>
   );
