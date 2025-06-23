@@ -1,5 +1,6 @@
-import { tv } from "tailwind-variants";
+import { tv, VariantProps } from "tailwind-variants";
 import "../styles/ui.css";
+import { cn } from "../lib/cn";
 
 export const buttonStyle = tv({
   base: 'font-medium bg-blue-500 text-white rounded-full active:opacity-80',
@@ -25,14 +26,17 @@ export const buttonStyle = tv({
     color: 'primary'
   }
 });
+type ButtonVariants = VariantProps<typeof buttonStyle>;
+
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  extends ButtonVariants {
   children: React.ReactNode;
+  className?: string;
 }
 
-export function Button({ children, ...props }: ButtonProps): JSX.Element {
+export function Button({ children, className, size, color, ...props }: ButtonProps): JSX.Element {
   return (
-    <button type="button" {...props} className="bg-purple-500 p-2 rounded">
+    <button type="button" {...props} className={cn(buttonStyle({ size, color, className }))}>
       {children}
     </button>
   );

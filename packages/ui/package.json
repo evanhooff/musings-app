@@ -44,6 +44,8 @@
       "require": "./dist/index.js"
     },
     "./css": "./dist/index.css",
+    "./uicss": "./styles/ui.css",
+    "./webcss": "./styles/web.css",
     "./postcss": "./postcss.config.mjs",
     "./tailwind": "./tailwind.config.js"
   }
