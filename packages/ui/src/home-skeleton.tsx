@@ -1,47 +1,17 @@
 import React from "react";
-import { Navigation, NavigationSkeleton } from "./layout/Navigation";
-import { Footer, FooterSkeleton } from "./layout/Footer";
-import { tv } from "tailwind-variants";
-
-export const homeLayout = tv({
-  base: "flex min-h-screen",
-  variants: {
-    direction: {
-      ltr: "text-left",
-      rtl: "text-right",
-    },
-    layout: {
-      column: "flex-col",
-      row: "flex-row",
-    }
-  },
-  compoundVariants: [
-    {
-      direction: 'ltr',
-      layout: 'column',
-      class: 'bg-gray-100'
-    },
-    {
-      direction: 'rtl',
-      layout: 'row',
-      class: 'bg-green-100'
-    }
-  ],
-  defaultVariants: {
-    direction: "ltr",
-    layout: "column",
-  },
-});
-
+import { NavigationSkeleton } from "./layout/Navigation";
+import { FooterSkeleton } from "./layout/Footer";
+import { cn } from "../lib/cn";
+import { Skeleton } from "./skeleton";
+import { homeLayout } from "./home-layout";
 interface HomeProps {
-  children: React.ReactNode;
   direction?: "ltr" | "rtl";
+  className?: string;
 }
 
-
 const HomeSkeleton = ({
-  children,
   direction = "ltr",
+  className,
 }: HomeProps) => {
   const style = homeLayout({
     direction,
@@ -49,12 +19,12 @@ const HomeSkeleton = ({
   });
 
   return (
-    <body className={style}>
-      <Navigation />
+    <body className={cn(style, className)}>
+      <NavigationSkeleton />
       <div className="grow">
-        {children}
+        <Skeleton />
       </div>
-      <Footer />
+      <FooterSkeleton />
     </body>
   );
 };

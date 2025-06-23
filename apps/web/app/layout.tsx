@@ -1,7 +1,8 @@
 import "../styles/global.css";
 import '@repo/ui/css';
 
-import { HomeSkeleton } from "@repo/ui";
+import { HomeLayout, HomeSkeleton } from "@repo/ui";
+import { Suspense } from "react";
 
 export default function RootLayout({
   children,
@@ -13,9 +14,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head></head>
-      <HomeSkeleton direction={direction}>
-        {children}
-      </HomeSkeleton>
+      <Suspense fallback={<HomeSkeleton direction={direction} />}>
+        <HomeLayout direction={direction}>
+          {children}
+        </HomeLayout>
+      </Suspense>
     </html>
   );
 }
