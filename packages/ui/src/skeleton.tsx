@@ -7,7 +7,7 @@ function Skeleton({
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div aria-live="polite" aria-busy="true" className={className} {...props}>
-      <span className="inline-flex w-full animate-pulse select-none rounded-md bg-grey-300 leading-none">
+      <span className="inline-flex w-full animate-pulse select-none rounded-md bg-gray-300 leading-none">
         ‌
       </span>
       <br />
@@ -16,7 +16,7 @@ function Skeleton({
 }
 
 const SVGSkeleton = ({ className }: React.HTMLAttributes<HTMLDivElement>) => (
-  <svg className={cn("animate-pulse rounded bg-grey-300", className)} />
+  <svg className={cn("animate-pulse rounded bg-gray-300", className)} />
 );
 
 export { SVGSkeleton, Skeleton };
