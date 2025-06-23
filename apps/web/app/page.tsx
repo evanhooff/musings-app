@@ -39,7 +39,7 @@ export default function Web() {
         <h1 className="text-blue-400 text-xl m-0">Web</h1>
       </Header>
       <main>
-        <Button onClick={() => console.log("Pressed!")}>UI Button</Button>
+        {/* <Button onClick={() => console.log("Pressed!")}>UI Button</Button> */}
         {/* <Button
           className={button({ size: 'sm', color: 'secondary' })}
           onClick={() => console.log("Pressed!")}>Text</Button> */}
