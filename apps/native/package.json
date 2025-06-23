@@ -45,6 +45,9 @@
     "twrnc": "^4.8.0"
   },
   "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/prettier-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
     "@babel/core": "^7.26.0",
     "@repo/eslint-config": "workspace:*",
     "@repo/prettier-config": "workspace:*",
