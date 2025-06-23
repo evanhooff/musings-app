@@ -51,7 +51,9 @@ const HomeSkeleton = ({
   return (
     <body className={style}>
       <Navigation />
-      <div className="grow">{children}</div>
+      <div className="grow">
+        {children}
+      </div>
       <Footer />
     </body>
   );

@@ -14,7 +14,7 @@ export default function RootLayout({
     <html lang="en">
       <head></head>
       <HomeSkeleton direction={direction}>
-        <template>{children}</template>
+        {children}
       </HomeSkeleton>
     </html>
   );
