@@ -47,6 +47,7 @@
     "./uicss": "./styles/ui.css",
     "./webcss": "./styles/web.css",
     "./postcss": "./postcss.config.mjs",
-    "./tailwind": "./tailwind.config.js"
+    "./tailwind": "./tailwind.config.js",
+    "./lib": "./lib/index.ts"
   }
 }

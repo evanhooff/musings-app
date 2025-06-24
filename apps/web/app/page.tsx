@@ -1,11 +1,10 @@
-// page.tsx
 "use client";
 
 import Link from 'next/link';
 
 import { Button, Header, HomeSkeleton, Skeleton } from '@repo/ui';
 import { useTimeBasedBackground } from '../hooks/useTimeBasedBackground';
-import { cn } from '../lib/cn';
+import { cn } from '@repo/ui/lib';
  
 export default function Web() {
   const { backgroundClass, isLoaded } = useTimeBasedBackground();
