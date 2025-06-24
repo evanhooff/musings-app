@@ -1,5 +1,8 @@
-/** @type {import("@repo/prettier-config").Config} */
-module.exports = {
+/**
+ * @see https://prettier.io/docs/configuration
+ * @type {import("prettier").Config}
+ */
+export default {
     plugins: ['prettier-plugin-tailwindcss'],
     parser: 'typescript',
     printWidth: 80,

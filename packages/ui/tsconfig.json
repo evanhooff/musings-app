@@ -1,5 +1,5 @@
 {
   "extends": "@repo/typescript-config/react-library",
-  "include": ["."],
+  "include": [".", "../../apps/docs/stories/games/canvas.stories.tsx"],
   "exclude": ["dist", "build", "node_modules"]
 }

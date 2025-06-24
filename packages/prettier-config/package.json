@@ -2,13 +2,13 @@
   "name": "@repo/prettier-config",
   "version": "0.0.0",
   "files": [
-    "prettierrc.js"
+    "prettierrc.mjs"
   ],
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/storybook-config": "workspace:*",
     "@vercel/style-guide": "link:@repo/storybook-config",
-    "prettier": "link:@vercel/style-guide/prettier",
+    "prettier": "^3.6.0",
     "prettier-plugin-tailwindcss": "^0.6.9"
   }
 }
