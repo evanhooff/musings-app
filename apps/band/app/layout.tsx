@@ -1,5 +1,19 @@
-import Link from "next/link";
-import React from "react";
+// app/layout.tsx
+
+import { Metadata } from 'next';
+import './globals.css';
+
+export const metadata: Metadata = {
+  title: 'Misses Monday - Alternative Rock Band',
+  description: 'Alternative Rock from the Netherlands. New Album Out Now.',
+  keywords: 'Misses Monday, alternative rock, Dutch band, rock music',
+  authors: [{ name: 'Misses Monday' }],
+  openGraph: {
+    title: 'Misses Monday - Alternative Rock Band',
+    description: 'Alternative Rock from the Netherlands. New Album Out Now.',
+    type: 'website',
+  },
+};
 
 export default function RootLayout({
   children,
@@ -8,17 +22,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        style={{
-          margin: "3rem",
-        }}
-      >
-        <header>
-          <Link href="/">Home</Link>
-          {" | "}
-          <Link href="/posts">Posts</Link>
-        </header>
-        <main>{children}</main>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="font-sans antialiased">
+        {children}
       </body>
     </html>
   );

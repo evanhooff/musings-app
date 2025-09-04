@@ -17,12 +17,9 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@repo/prettier-config": "workspace:*",
     "@repo/storybook-config": "workspace:*",
     "@types/react": "^18.2.18",
     "@types/react-dom": "^18.2.18",
-    "@vercel/style-guide": "link:@repo/storybook-config",
-    "prettier": "link:@repo/prettier-config",
     "tsup": "^8.0.2",
     "typescript": "^5.7.2"
   },
@@ -46,6 +43,7 @@
     "./css": "./dist/index.css",
     "./uicss": "./styles/ui.css",
     "./webcss": "./styles/web.css",
+    "./bandcss": "./styles/band.css",
     "./postcss": "./postcss.config.mjs",
     "./tailwind": "./tailwind.config.js",
     "./lib": "./lib/index.ts"
