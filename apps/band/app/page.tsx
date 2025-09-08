@@ -15,8 +15,10 @@ export default async function Page({
 }: {
   params: { filename: string[] };
 }) {
+
+
   const data = await client.queries.page({
-    relativePath: `${params.filename}.mdx`,
+    relativePath: params.filename ? `${params.filename}.mdx` : "home.mdx",
   });
 
   return <ClientLandingPage {...data} />;

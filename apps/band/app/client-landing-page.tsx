@@ -61,5 +61,12 @@ export default function ClientLandingPage(props: ClientPageProps) {
     data: props.data,
   });
 
-  return <LandingPage {...data} isLoading={loading} />;
+  return (
+    <LandingPage
+      query={props.query}
+      variables={props.variables}
+      data={data}
+      isLoading={loading}
+    />
+  );
 }
