@@ -1,59 +1,18 @@
-// app/client-landing-page.tsx
-
 'use client';
 
 import { useState, useEffect } from 'react';
 import { staticRequest } from "tinacms";
 import { useTina } from "tinacms/dist/react";
 import LandingPage from "./components/LandingPage";
+import type { PageQuery } from "../tina/__generated__/types";
 
-const query = `
-  query {
-    page(relativePath: "home.mdx") {
-      hero {
-        title
-        subtitle
-        logoImage
-        backgroundVideo
-        ctaText
-        ctaLink
-      }
-      about {
-        title
-        content
-        image
-      }
-      music {
-        title
-        tracks {
-          title
-          description
-          coverImage
-          audioUrl
-        }
-      }
-      tour {
-        title
-        dates {
-          date
-          venue
-          city
-          ticketUrl
-        }
-      }
-      contact {
-        title
-        email
-        social {
-          instagram
-          spotify
-          youtube
-          facebook
-        }
-      }
-    }
-  }
-`;
+export interface ClientPageProps {
+  query: string;
+  variables: {
+    relativePath: string;
+  };
+  data: { page: PageQuery["page"] };
+}
 
 // Default data to prevent hook issues
 const defaultData = {
@@ -92,40 +51,15 @@ const defaultData = {
   },
 };
 
-export default function ClientLandingPage() {
-  const [tinaData, setTinaData] = useState(defaultData);
+export default function ClientLandingPage(props: ClientPageProps) {
   const [loading, setLoading] = useState(true);
 
-  // Always call useTina hook - this prevents the hook order issue
+  // data passes though in production mode and data is updated to the sidebar data in edit-mode
   const { data } = useTina({
-    query,
-    variables: {},
-    data: tinaData,
+    query: props.query,
+    variables: props.variables,
+    data: props.data,
   });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await staticRequest({
-          query,
-          variables: {},
-        });
-        setTinaData((result as { data: typeof defaultData }).data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        // Keep default data if fetch fails
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  // Show loading state but still render LandingPage with default data
-  if (loading) {
-    return <LandingPage data={data} variables={{}} query={query} isLoading={true} />;
-  }
-
-  return <LandingPage data={data} variables={{}} query={query} isLoading={false} />;
+  return <LandingPage {...data} isLoading={loading} />;
 }

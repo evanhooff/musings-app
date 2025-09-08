@@ -1,16 +1,17 @@
-// app/layout.tsx
+import Link from "next/link";
+import React from "react";
 
 import { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Misses Monday - Alternative Rock Band',
-  description: 'Alternative Rock from the Netherlands. New Album Out Now.',
-  keywords: 'Misses Monday, alternative rock, Dutch band, rock music',
+  title: 'Misses Monday -Blues Pop/Rock Band',
+  description: 'Blues Pop/Rock Band from the Netherlands.',
+  keywords: 'Misses Monday, blues pop/rock, Dutch band, rock music, blues, women in blues',
   authors: [{ name: 'Misses Monday' }],
   openGraph: {
-    title: 'Misses Monday - Alternative Rock Band',
-    description: 'Alternative Rock from the Netherlands. New Album Out Now.',
+    title: 'Misses Monday - Blues Pop/Rock Band',
+    description: 'Blues Pop from the Netherlands.',
     type: 'website',
   },
 };
