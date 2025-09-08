@@ -13,12 +13,13 @@ export async function generateStaticParams() {
 export default async function Page({
   params,
 }: {
-  params: { filename: string[] };
+  params: Promise<{ filename?: string[] }>;
 }) {
-
+  // Await the params since they're now a Promise in Next.js 15
+  const resolvedParams = await params;
 
   const data = await client.queries.page({
-    relativePath: params.filename ? `${params.filename}.mdx` : "home.mdx",
+    relativePath: resolvedParams.filename ? `${resolvedParams.filename.join('/')}.mdx` : "home.mdx",
   });
 
   return <ClientLandingPage {...data} />;
