@@ -1,6 +1,6 @@
-/** @type {import("@repo/prettier-config").Config} */
 module.exports = {
-    plugins: ['prettier-plugin-tailwindcss'],
+    ...require('@vercel/style-guide/prettier'),
+    // plugins: ['prettier-plugin-tailwindcss'],
     parser: 'typescript',
     printWidth: 80,
     endOfLine: 'lf',
@@ -13,12 +13,12 @@ module.exports = {
     bracketSpacing: true,
     bracketSameLine: false,
     overrides: [
-      {
+        {
         files: '*.md',
         options: {
-          parser: 'markdown',
-          proseWrap: 'always',
+            parser: 'markdown',
+            proseWrap: 'always',
         },
-      },
+        },
     ],
-  }
+}

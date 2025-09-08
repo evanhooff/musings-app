@@ -1,14 +1,6 @@
 {
   "name": "@repo/prettier-config",
-  "version": "0.0.0",
-  "files": [
-    "prettierrc.js"
-  ],
-  "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/storybook-config": "workspace:*",
-    "@vercel/style-guide": "link:@repo/storybook-config",
-    "prettier": "link:@vercel/style-guide/prettier",
-    "prettier-plugin-tailwindcss": "^0.6.9"
-  }
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT"
 }
