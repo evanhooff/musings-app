@@ -72,15 +72,17 @@ export default function LandingPage({ data, variables, query, isLoading }: Landi
               MISSES MONDAY
             </div>
             <div className="hidden md:flex space-x-8">
-              {['Home', 'About', 'Music', 'Tour', 'Contact'].map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className="text-white/70 hover:text-white transition-colors duration-300 hover:text-purple-400"
-                >
-                  {item}
-                </a>
-              ))}
+              {Object.entries({ home: hero, about, music, tour, contact })
+                .filter(([_, section]) => section && Object.keys(section).length > 0)
+                .map(([key]) => (
+                  <a
+                    key={key}
+                    href={`#${key}`}
+                    className="text-white/70 hover:text-white transition-colors duration-300 hover:text-purple-400"
+                  >
+                    {key.charAt(0).toUpperCase() + key.slice(1)}
+                  </a>
+                ))}
             </div>
           </div>
         </div>

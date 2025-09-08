@@ -87,7 +87,7 @@ export default {
           type: "string",
           name: "title",
           label: "Music Section Title",
-          required: true,
+          required: false,
         },
         {
           type: "object",
