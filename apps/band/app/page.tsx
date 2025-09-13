@@ -1,5 +1,8 @@
+import useSoundcloud from "../lib/soundcloud";
 import client from "../tina/__generated__/client";
 import ClientLandingPage from "./client-landing-page";
+import SoundcloudPlayer from "./components/SoundcloudPlayer";
+import SoundCloudPlayer from "./components/SoundcloudPlayer";
 
 export async function generateStaticParams() {
   const pages = await client.queries.pageConnection();
@@ -21,6 +24,15 @@ export default async function Page({
   const data = await client.queries.page({
     relativePath: resolvedParams.filename ? `${resolvedParams.filename.join('/')}.mdx` : "home.mdx",
   });
+  const playlist = await useSoundcloud();
+  if (!playlist) {
+      return <div className="text-center text-white">Failed to load SoundCloud playlist.</div>;
+  }
 
-  return <ClientLandingPage {...data} />;
+  return (
+    <>
+      <ClientLandingPage {...data} />
+      <SoundcloudPlayer {...playlist} />
+    </>
+  )
 }

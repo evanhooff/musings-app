@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { staticRequest } from "tinacms";
+import { useState } from 'react';
 import { useTina } from "tinacms/dist/react";
 import LandingPage from "./components/LandingPage";
 import type { PageQuery } from "../tina/__generated__/types";
@@ -13,43 +12,6 @@ export interface ClientPageProps {
   };
   data: { page: PageQuery["page"] };
 }
-
-// Default data to prevent hook issues
-const defaultData = {
-  page: {
-    hero: {
-      title: "MISSES MONDAY",
-      subtitle: "Loading...",
-      logoImage: "",
-      backgroundVideo: "",
-      ctaText: "Listen Now",
-      ctaLink: "#",
-    },
-    about: {
-      title: "About",
-      content: "Loading...",
-      image: "",
-    },
-    music: {
-      title: "Music",
-      tracks: [],
-    },
-    tour: {
-      title: "Tour",
-      dates: [],
-    },
-    contact: {
-      title: "Contact",
-      email: "contact@missesmonday.com",
-      social: {
-        instagram: "",
-        spotify: "",
-        youtube: "",
-        facebook: "",
-      },
-    },
-  },
-};
 
 export default function ClientLandingPage(props: ClientPageProps) {
   const [loading, setLoading] = useState(true);
