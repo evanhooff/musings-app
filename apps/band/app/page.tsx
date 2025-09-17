@@ -25,14 +25,13 @@ export default async function Page({
     relativePath: resolvedParams.filename ? `${resolvedParams.filename.join('/')}.mdx` : "home.mdx",
   });
   const playlist = await useSoundcloud();
-  if (!playlist) {
-      return <div className="text-center text-white">Failed to load SoundCloud playlist.</div>;
-  }
 
   return (
     <>
+      { playlist && 
+        <SoundcloudPlayer {...playlist} />
+      }
       <ClientLandingPage {...data} />
-      <SoundcloudPlayer {...playlist} />
     </>
   )
 }

@@ -2,11 +2,18 @@
 import { useState } from "react";
 import type { PageQuery } from "../../tina/__generated__/types";
 import { SoundcloudPlaylist } from "soundcloud.ts/dist/types";
+import soundcloud, { Soundcloud } from "soundcloud.ts";
+import SoundcloudIFrame from "./SoundcloudIFrame";
 
-export default function SoundcloudPlayer(playlist: SoundcloudPlaylist | null) {
+type SoundcloudPlayerProps = {
+    playlist: SoundcloudPlaylist | null;
+}
+
+export default function SoundcloudPlayer({ playlist }: SoundcloudPlayerProps) {
     if (!playlist || !playlist.tracks) {
         return null;
     }
+    
 
     return (
           <div className="max-w-6xl mx-auto">
@@ -14,31 +21,41 @@ export default function SoundcloudPlayer(playlist: SoundcloudPlaylist | null) {
               {playlist.title}
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {playlist.tracks.map((track, index) => (
-                  <div 
-                    key={index}
-                    className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:transform hover:scale-105"
-                  >
-                    {track?.artwork_url && (
-                      <img 
-                        src={track.artwork_url} 
-                        alt={track.title}
-                        className="w-full h-48 object-cover rounded-xl mb-4"
-                      />
-                    )}
-                    <h3 className="text-xl font-bold mb-2 text-white">{track?.title}</h3>
-                    <p className="text-white/70 mb-4">{track?.description}</p>
-                    {track?.uri && (
-                      <audio 
-                        controls 
-                        className="w-full"
-                        style={{ filter: 'invert(1)' }}
-                      >
-                        <source src={track.uri} type="audio/mpeg" />
-                      </audio>
-                    )}
-                  </div>
-              ))}
+              {playlist.tracks.map((track, index) => {
+                const [showPlayer, setShowPlayer] = useState(false);
+                  return (
+                    <div 
+                      key={index}
+                      className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:transform hover:scale-105"
+                    >
+                      {track?.artwork_url && (
+                        <img 
+                          src={track.artwork_url} 
+                          alt={track.title}
+                          className="w-full h-48 object-cover rounded-xl mb-4"
+                        />
+                      )}
+                      <h3 className="text-xl font-bold mb-2">{track?.title}</h3>
+                      <p className="mb-4">{track?.description}</p>
+                        <button
+                          onClick={() => setShowPlayer(true)}
+                          className="px-4 py-2 rounded-lg bg-purple-500 hover:bg-purple-600 transition-colors"
+                        >
+                          ▶ Play
+                        </button>
+
+                        {playlist.tracks?.[index] && showPlayer === true && (
+
+                          <SoundcloudIFrame 
+
+                            url={playlist.tracks[index].uri} 
+                            height={550} 
+                            color="#c27aff" />
+                        )}
+                      
+                    </div>
+                  )
+})}
             </div>
           </div>
     );

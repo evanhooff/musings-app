@@ -7,7 +7,9 @@ export default async function useSoundcloud() {
     const soundcloud = new Soundcloud('dUSSYkKvVfgl8MqbBbjwn7UbpM7QVNks', '2-307333-252185868-MeClgfNwoQ9Yoa')
     try {
         const playlist = await soundcloud.playlists.getAlt("missesmondaymusic/sets/misses-monday-studio")
-        return playlist;
+        return {
+            playlist
+        };
     } catch (error) {
         console.error("Error fetching SoundCloud playlist:", error);
         return null;

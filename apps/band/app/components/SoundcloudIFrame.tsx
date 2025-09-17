@@ -1,5 +1,5 @@
 // components/SoundCloudPlayer.tsx
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 interface SoundCloudPlayerProps {
   url: string; // Track or playlist URL
@@ -12,11 +12,12 @@ const SoundcloudIFrame: React.FC<SoundCloudPlayerProps> = ({
   height = 400,
   color = "#ff5500",
 }) => {
+
   const embedUrl = `https://w.soundcloud.com/player/?url=${encodeURIComponent(
     url
   )}&color=${encodeURIComponent(
     color
-  )}&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=true&visual=false`;
+  )}&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=true&visual=false`;
 
   return (
     <div id="soundcloud-player" className="my-8">

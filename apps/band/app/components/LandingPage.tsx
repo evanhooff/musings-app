@@ -102,15 +102,15 @@ export default function LandingPage({ data }: LandingPageProps) {
         <About {...about} />
       }
 
-      {/* Music Section */}
+      Music Section
       <section id="music" className="py-24 px-6 bg-gradient-to-b from-black to-gray-900">
         { music?.tracks && 
           <Music {...music} />
         }
         
-        <SoundcloudIFrame url="https://soundcloud.com/missesmondaymusic/sets/misses-monday-studio" 
+        {/* <SoundcloudIFrame url="https://api.soundcloud.com/tracks/soundcloud%3Atracks%3A2139523725" 
           height={550} 
-          color="#c27aff" />
+          color="#c27aff" /> */}
       </section>
 
       {/* Tour Section */}
