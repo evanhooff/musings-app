@@ -1,10 +1,16 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { staticRequest } from "tinacms";
 import { useTina } from "tinacms/dist/react";
-import LandingPage from "./components/LandingPage";
 import type { PageQuery } from "../tina/__generated__/types";
+import { useEffect } from 'react';
+import About from './components/About';
+import Hero from './components/Hero';
+import Music from './components/music/Music';
+import Tour from './components/Tour';
+import Contact from './components/Contact';
+import { SoundcloudPlaylist } from "soundcloud.ts";
+import SoundcloudPlayer from "./components/music/SoundcloudPlayer";
+import Nav from "./components/Nav";
 
 export interface ClientPageProps {
   query: string;
@@ -12,48 +18,10 @@ export interface ClientPageProps {
     relativePath: string;
   };
   data: { page: PageQuery["page"] };
+  playlist?: SoundcloudPlaylist | null;
 }
 
-// Default data to prevent hook issues
-const defaultData = {
-  page: {
-    hero: {
-      title: "MISSES MONDAY",
-      subtitle: "Loading...",
-      logoImage: "",
-      backgroundVideo: "",
-      ctaText: "Listen Now",
-      ctaLink: "#",
-    },
-    about: {
-      title: "About",
-      content: "Loading...",
-      image: "",
-    },
-    music: {
-      title: "Music",
-      tracks: [],
-    },
-    tour: {
-      title: "Tour",
-      dates: [],
-    },
-    contact: {
-      title: "Contact",
-      email: "contact@missesmonday.com",
-      social: {
-        instagram: "",
-        spotify: "",
-        youtube: "",
-        facebook: "",
-      },
-    },
-  },
-};
-
 export default function ClientLandingPage(props: ClientPageProps) {
-  const [loading, setLoading] = useState(true);
-
   // data passes though in production mode and data is updated to the sidebar data in edit-mode
   const { data } = useTina({
     query: props.query,
@@ -61,12 +29,99 @@ export default function ClientLandingPage(props: ClientPageProps) {
     data: props.data,
   });
 
+  // Custom hook to extract page sections from data
+  function usePageSections(data: ClientPageProps['data']) {
+    if (!data || !data.page) {
+      return {
+        hero: null,
+        about: null,
+        music: null,
+        tour: null,
+        contact: null,
+        isValid: false,
+      };
+    }
+    const { hero, about, music, tour, contact } = data.page;
+    return { hero, about, music, tour, contact, isValid: true };
+  }
+
+  const { hero, about, music, tour, contact, isValid } = usePageSections(data);
+
+  useEffect(() => {
+    // Only run if data exists
+    if (!data || !data.page) return;
+
+    // Smooth scroll for navigation
+    const handleScroll = (e: Event) => {
+      e.preventDefault();
+      const target = (e.target as HTMLAnchorElement).getAttribute('href');
+      if (target) {
+        document.querySelector(target)?.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+    };
+
+    const navLinks = document.querySelectorAll('a[href^="#"]');
+    navLinks.forEach(link => {
+      link.addEventListener('click', handleScroll);
+    });
+
+    return () => {
+      navLinks.forEach(link => {
+        link.removeEventListener('click', handleScroll);
+      });
+    };
+  }, [data]);
+
+
+  if (!isValid) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-white text-xl">No content available</div>
+      </div>
+    );
+  }
   return (
-    <LandingPage
-      query={props.query}
-      variables={props.variables}
-      data={data}
-      isLoading={loading}
-    />
+    <main className="min-h-screen bg-black text-white overflow-hidden">
+      <Nav {...data} />
+      <header>
+        {/* Hero Section */}
+        {hero && 
+          <Hero {...hero} />
+        }
+      </header>
+
+      {/* Tour Section */}
+      { tour && 
+        <Tour {...tour} />
+      }
+
+      {/* <section id="music" className="py-24 px-6 bg-gradient-to-b from-black to-gray-900">
+        { music && 
+          <Music {...music} />
+        }
+        { props.playlist && 
+          <SoundcloudPlayer playlist={props.playlist} />
+        }
+      </section> */}
+
+      {/* About Section */}
+      { about &&
+        <About {...about} />
+      }
+
+      {/* Contact Section */}
+      { contact &&
+        <Contact {...contact} />
+      }
+
+      {/* Footer */}
+      <footer className="py-8 px-6 border-t border-white/10">
+        <div className="max-w-6xl mx-auto text-center text-white/50">
+          <p>&copy; 2024 Misses Monday. All rights reserved.</p>
+        </div>
+      </footer>
+    </main>
   );
 }

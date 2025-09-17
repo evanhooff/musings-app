@@ -1,0 +1,43 @@
+import type { PageQuery } from "../../tina/__generated__/types";
+
+export default function Tour(tour: PageQuery["page"]["tour"]) {
+    if (!tour) {
+        return null;
+    }
+    return (
+        <section id="tour" className="py-24 px-6">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              {tour.title}
+            </h2>
+            { tour?.dates && 
+            
+              <div className="space-y-4">
+                {tour.dates.map((show, index) => (
+                  <div 
+                    key={index}
+                    className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 flex flex-col md:flex-row items-center justify-between hover:bg-white/10 transition-all duration-300"
+                  >
+                    { show && 
+                      <div className="flex-1 mb-4 md:mb-0">
+                        <div className="text-purple-400 font-bold text-lg">{show.date}</div>
+                        <div className="text-xl font-semibold text-white">{show.venue}</div>
+                        <div className="text-white/70">{show.city}</div>
+                      </div>
+                    }
+                    {show && show.ticketUrl && (
+                      <a
+                        href={show.ticketUrl}
+                        className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 hover:scale-105"
+                      >
+                        More info
+                      </a>
+                    )}
+                  </div>
+                ))}
+              </div>
+            }
+          </div>
+        </section>
+    );
+}
