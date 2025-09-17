@@ -1,11 +1,9 @@
 "use client";
 import { useState } from "react";
-import type { PageQuery } from "../../tina/__generated__/types";
 import { SoundcloudPlaylist } from "soundcloud.ts/dist/types";
-import soundcloud, { Soundcloud } from "soundcloud.ts";
 import SoundcloudIFrame from "./SoundcloudIFrame";
 
-type SoundcloudPlayerProps = {
+export type SoundcloudPlayerProps = {
     playlist: SoundcloudPlaylist | null;
 }
 
@@ -13,7 +11,6 @@ export default function SoundcloudPlayer({ playlist }: SoundcloudPlayerProps) {
     if (!playlist || !playlist.tracks) {
         return null;
     }
-    
 
     return (
           <div className="max-w-6xl mx-auto">
@@ -23,6 +20,7 @@ export default function SoundcloudPlayer({ playlist }: SoundcloudPlayerProps) {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {playlist.tracks.map((track, index) => {
                 const [showPlayer, setShowPlayer] = useState(false);
+                
                   return (
                     <div 
                       key={index}
@@ -45,9 +43,7 @@ export default function SoundcloudPlayer({ playlist }: SoundcloudPlayerProps) {
                         </button>
 
                         {playlist.tracks?.[index] && showPlayer === true && (
-
                           <SoundcloudIFrame 
-
                             url={playlist.tracks[index].uri} 
                             height={550} 
                             color="#c27aff" />

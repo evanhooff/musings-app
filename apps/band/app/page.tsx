@@ -1,8 +1,7 @@
 import useSoundcloud from "../lib/soundcloud";
 import client from "../tina/__generated__/client";
 import ClientLandingPage from "./client-landing-page";
-import SoundcloudPlayer from "./components/SoundcloudPlayer";
-import SoundCloudPlayer from "./components/SoundcloudPlayer";
+import SoundcloudPlayer from "./components/music/SoundcloudPlayer";
 
 export async function generateStaticParams() {
   const pages = await client.queries.pageConnection();
@@ -27,11 +26,6 @@ export default async function Page({
   const playlist = await useSoundcloud();
 
   return (
-    <>
-      { playlist && 
-        <SoundcloudPlayer {...playlist} />
-      }
-      <ClientLandingPage {...data} />
-    </>
+    <ClientLandingPage {...data} {...playlist} />
   )
 }

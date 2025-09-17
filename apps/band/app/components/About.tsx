@@ -19,11 +19,11 @@ export default function About(about: PageQuery["page"]["about"]) {
                 </div>
               </div>
               {about.image && (
-                <div className="relative">
+                <div className="relative flex items-start justify-center h-96">
                   <img 
-                    src={about.image} 
-                    alt="Band Photo" 
-                    className="w-full h-96 object-cover rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-500"
+                  src={about.image} 
+                  alt="Band Photo" 
+                  className="w-full h-96 object-contain object-top rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent rounded-2xl" />
                 </div>
