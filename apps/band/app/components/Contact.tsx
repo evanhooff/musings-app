@@ -22,17 +22,10 @@ export default function Contact(contact: PageQuery["page"]["contact"]) {
             
             { contact.social &&
               <div className="flex justify-center space-x-8">
-                {contact.social.instagram && (
+
+                {contact.social.soundcloud && (
                   <a 
-                    href={contact.social.instagram}
-                    className="text-white/70 hover:text-pink-400 transition-colors duration-300 transform hover:scale-110"
-                  >
-                    <span className="text-2xl">📱</span>
-                  </a>
-                )}
-                {contact.social.spotify && (
-                  <a 
-                    href={contact.social.spotify}
+                    href={contact.social.soundcloud}
                     className="text-white/70 hover:text-green-400 transition-colors duration-300 transform hover:scale-110"
                   >
                     <span className="text-2xl">🎵</span>

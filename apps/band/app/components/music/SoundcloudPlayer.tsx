@@ -2,12 +2,14 @@
 import { useState } from "react";
 import { SoundcloudPlaylist } from "soundcloud.ts/dist/types";
 import SoundcloudIFrame from "./SoundcloudIFrame";
+import { PageQuery } from "../../../tina/__generated__/types";
 
 export type SoundcloudPlayerProps = {
     playlist: SoundcloudPlaylist | null;
+    content: PageQuery["page"]["musicPlayer"] | null;
 }
 
-export default function SoundcloudPlayer({ playlist }: SoundcloudPlayerProps) {
+export default function SoundcloudPlayer({ playlist, content }: SoundcloudPlayerProps) {
     if (!playlist || !playlist.tracks) {
         return null;
     }
@@ -15,7 +17,7 @@ export default function SoundcloudPlayer({ playlist }: SoundcloudPlayerProps) {
     return (
           <div className="max-w-6xl mx-auto">
             <h2 className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              {playlist.title}
+              {content?.title ? content.title : playlist.title}
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {playlist.tracks.map((track, index) => {

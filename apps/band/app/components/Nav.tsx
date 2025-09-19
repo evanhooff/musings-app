@@ -43,7 +43,7 @@ export default function ClientLandingPage(data: ClientPageProps['data']) {
             </div>
             <div className="hidden md:flex space-x-8">
                   <a
-                    href={`#tour`}
+                    href={`#agenda`}
                     className="text-white/70 hover:text-white transition-colors duration-300 hover:text-purple-400"
                   >
                     Agenda

@@ -3,10 +3,13 @@ import 'server-only'
 
 import Soundcloud from "soundcloud.ts"
 
-export default async function useSoundcloud() {
+export default async function useSoundcloud({ url }: { url: string | null }) {
+    if (!url) {
+        return null;
+    }
     const soundcloud = new Soundcloud('dUSSYkKvVfgl8MqbBbjwn7UbpM7QVNks', '2-307333-252185868-MeClgfNwoQ9Yoa')
     try {
-        const playlist = await soundcloud.playlists.getAlt("missesmondaymusic/sets/misses-monday-studio")
+        const playlist = await soundcloud.playlists.getAlt(url);
         return {
             playlist
         };

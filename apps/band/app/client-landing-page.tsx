@@ -36,16 +36,16 @@ export default function ClientLandingPage(props: ClientPageProps) {
         hero: null,
         about: null,
         music: null,
-        tour: null,
+        agenda: null,
         contact: null,
         isValid: false,
       };
     }
-    const { hero, about, music, tour, contact } = data.page;
-    return { hero, about, music, tour, contact, isValid: true };
+    const { hero, about, music, agenda, contact, musicPlayer } = data.page;
+    return { hero, about, music, agenda, contact, musicPlayer, isValid: true };
   }
 
-  const { hero, about, music, tour, contact, isValid } = usePageSections(data);
+  const { hero, about, music, agenda, contact, musicPlayer, isValid } = usePageSections(data);
 
   useEffect(() => {
     // Only run if data exists
@@ -93,18 +93,18 @@ export default function ClientLandingPage(props: ClientPageProps) {
       </header>
 
       {/* Tour Section */}
-      { tour && 
-        <Tour {...tour} />
+      { agenda && 
+        <Tour {...agenda} />
       }
 
-      {/* <section id="music" className="py-24 px-6 bg-gradient-to-b from-black to-gray-900">
+      <section id="music" className="bg-gradient-to-b from-black to-gray-900">
         { music && 
           <Music {...music} />
         }
         { props.playlist && 
-          <SoundcloudPlayer playlist={props.playlist} />
+          <SoundcloudPlayer playlist={props.playlist} content={musicPlayer} />
         }
-      </section> */}
+      </section>
 
       {/* About Section */}
       { about &&
