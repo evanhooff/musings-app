@@ -4,8 +4,6 @@ import { useEffect } from 'react';
 import { ClientPageProps } from '../client-landing-page';
 
 export default function ClientLandingPage(data: ClientPageProps['data']) {
-    
-  const { hero, about, music, tour, contact } = data.page;
   
   useEffect(() => {
     // Only run if data exists
