@@ -3,7 +3,7 @@
   "ui": "tui",
   "tasks": {
     "build": {
-      "env": ["TINA_TOKEN", "ENABLE_EXPERIMENTAL_COREPACK"],
+      "env": ["TINA_TOKEN", "ENABLE_EXPERIMENTAL_COREPACK", "IMMICH_API_KEY", "IMMICH_BASE_URL"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**", "storybook-static"],
       "dependsOn": ["^build"]
