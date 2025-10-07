@@ -1,16 +1,18 @@
 'use client';
 
 import { useTina } from "tinacms/dist/react";
-import type { PageQuery } from "../tina/__generated__/types";
 import { useEffect } from 'react';
 import About from './components/About';
 import Hero from './components/Hero';
 import Music from './components/music/Music';
 import Tour from './components/Tour';
 import Contact from './components/Contact';
-import { SoundcloudPlaylist } from "soundcloud.ts";
 import SoundcloudPlayer from "./components/music/SoundcloudPlayer";
 import Nav from "./components/Nav";
+import type { PageQuery } from "../tina/__generated__/types";
+import type { SoundcloudPlaylist } from "soundcloud.ts";
+import type { AlbumResponseDto } from "@immich/sdk";
+import Album from "./components/photo/Album";
 
 export interface ClientPageProps {
   query: string;
@@ -19,6 +21,7 @@ export interface ClientPageProps {
   };
   data: { page: PageQuery["page"] };
   playlist?: SoundcloudPlaylist | null;
+  albums?: Partial<AlbumResponseDto>[] | null;
 }
 
 export default function ClientLandingPage(props: ClientPageProps) {
@@ -95,6 +98,17 @@ export default function ClientLandingPage(props: ClientPageProps) {
       {/* Tour Section */}
       { agenda && 
         <Tour {...agenda} />
+      }
+
+      {/* Photos Section */}
+      { props.albums && props.albums.length > 0 &&
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6 py-8">
+          {props.albums?.map((album, idx) => (
+            <div key={album.id ?? idx}>
+              <Album album={album} />
+            </div>
+          ))}
+        </div>
       }
 
       <section id="music" className="bg-gradient-to-b from-black to-gray-900">

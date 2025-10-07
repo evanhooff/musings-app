@@ -1,8 +1,7 @@
-import { url } from "inspector";
 import useSoundcloud from "../lib/soundcloud";
+import { initImmich, fetchImmichAlbums, fetchAlbumThumbnail } from "../lib/immich";
 import client from "../tina/__generated__/client";
 import ClientLandingPage from "./client-landing-page";
-import SoundcloudPlayer from "./components/music/SoundcloudPlayer";
 
 export async function generateStaticParams() {
   const pages = await client.queries.pageConnection();
@@ -27,7 +26,18 @@ export default async function Page({
   const playlistUrl = data.data?.page?.musicPlayer?.playlistUrl || null;
   const playlist = playlistUrl ? await useSoundcloud({ url: playlistUrl }) : null;
 
+  await initImmich();
+  const albums = await fetchImmichAlbums();
+  const thumbnails = await Promise.all((albums ?? []).map(async (album) => {
+    if (album.albumThumbnailAssetId) {
+      const thumbnail = await fetchAlbumThumbnail({ id: album.albumThumbnailAssetId });
+      return { ...album, thumbnail };
+    }
+    return album;
+  }));
+  console.log("Fetched albums with thumbnails:", thumbnails);
+
   return (
-    <ClientLandingPage {...data} {...playlist} />
+    <ClientLandingPage {...data} {...playlist} albums={albums} />
   )
 }

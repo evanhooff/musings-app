@@ -18,9 +18,16 @@ export default function agenda(agenda: PageQuery["page"]["agenda"]) {
                     key={index}
                     className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 flex flex-col md:flex-row items-center justify-between hover:bg-white/10 transition-all duration-300"
                   >
-                    { show && 
+                    { show && show.date &&
                       <div className="mb-4 md:mb-0">
-                        <div className="text-purple-400 font-bold text-lg">{show.date} {show.walkInTime}</div>
+                        <div className="text-purple-400 font-bold text-lg">
+                            {new Date(show.date).toLocaleDateString("nl-NL", {
+                              weekday: "long",
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                            })} - {show.walkInTime}
+                        </div>
                         <div className="text-xl font-semibold text-white">{show.venue} @ {show.city}</div>
                         <div className="text-white/70">Starttijd: {show.showTime} - {show.duration}</div>
                       </div>

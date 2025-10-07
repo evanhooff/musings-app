@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
-import { SoundcloudPlaylist } from "soundcloud.ts/dist/types";
 import SoundcloudIFrame from "./SoundcloudIFrame";
-import { PageQuery } from "../../../tina/__generated__/types";
+import type { SoundcloudPlaylist } from "soundcloud.ts/dist/types";
+import type { PageQuery } from "../../../tina/__generated__/types";
 
 export type SoundcloudPlayerProps = {
     playlist: SoundcloudPlaylist | null;

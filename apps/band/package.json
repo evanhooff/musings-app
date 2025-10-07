@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@immich/sdk": "^1.138.1",
     "@repo/ui": "workspace:*",
     "@tailwindcss/postcss": "^4.1.5",
     "next": "^15.5.2",
