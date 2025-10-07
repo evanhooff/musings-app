@@ -3,8 +3,13 @@ import { AlbumResponseDto, type AssetResponseDto, getAllAlbums, getAssetInfo, in
 
 const API_KEY = process.env.IMMICH_API_KEY || "";
 const BASE_URL = process.env.IMMICH_BASE_URL || "";
-// Use our custom image API route that handles the API key server-side
-const THUMBNAIL_SRC = (assetId: string) => `/api/images/${assetId}?size=thumbnail`;
+
+// Helper function to generate Immich URLs (without API key - that gets added server-side)
+function getImgSrc(assetId: string, size: string = 'thumbnail'): string {
+  // Encode the full Immich URL as a parameter so the route can just add the API key
+  const immichPath = `${BASE_URL}/assets/${assetId}/thumbnail?size=${size}`;
+  return `/api/images/proxy?url=${encodeURIComponent(immichPath)}`;
+}
 
 export type AlbumWithThumbnail = {
     id: AlbumResponseDto["id"];
@@ -16,7 +21,6 @@ export type AlbumWithThumbnail = {
 
 export async function initImmich() {
     try {
-        // TODO: set the access token in the cookies?
         await init({ baseUrl: BASE_URL, apiKey: API_KEY });
         console.log("Immich SDK initialized.");
     } catch (error) {
@@ -33,7 +37,7 @@ export async function fetchImmichAlbums() {
                 albumThumbnailAssetId: album.albumThumbnailAssetId,
                 albumName: album.albumName,
                 description: album.description || "",
-                thumbnailSrc: album.albumThumbnailAssetId ? THUMBNAIL_SRC(album.albumThumbnailAssetId) : null,
+                thumbnailSrc: album.albumThumbnailAssetId ? getImgSrc(album.albumThumbnailAssetId) : null,
             }
         });
     } catch (error) {

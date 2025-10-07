@@ -1,19 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const IMMICH_BASE_URL = process.env.IMMICH_BASE_URL || '';
 const IMMICH_API_KEY = process.env.IMMICH_API_KEY || '';
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Promise<{ assetId: string }> }
-) {
+export async function GET(request: NextRequest) {
   try {
-    // Await params in Next.js 15
-    const { assetId } = await params;
     const searchParams = request.nextUrl.searchParams;
-    const size = searchParams.get('size') || 'thumbnail';
     
-    const immichUrl = `${IMMICH_BASE_URL}/assets/${assetId}/thumbnail?size=${size}&apiKey=${IMMICH_API_KEY}`;
+    // Get the encoded Immich URL from the client
+    const encodedUrl = searchParams.get('url');
+    if (!encodedUrl) {
+      return NextResponse.json(
+        { error: 'Missing URL parameter' },
+        { status: 400 }
+      );
+    }
+    
+    // Decode the URL and add the API key
+    const baseUrl = decodeURIComponent(encodedUrl);
+    const immichUrl = `${baseUrl}&apiKey=${IMMICH_API_KEY}`;
+    
+    console.log(`[IMMICH PROXY] Fetching: ${immichUrl.replace(IMMICH_API_KEY, '[REDACTED]')}`);
     
     const response = await fetch(immichUrl, {
       method: 'GET',
@@ -25,8 +31,7 @@ export async function GET(
     });
 
     if (!response.ok) {
-      console.error(`[IMMICH IMAGE] Error: ${response.status} ${response.statusText}`);
-      // Return a placeholder or error image
+      console.error(`[IMMICH PROXY] Error: ${response.status} ${response.statusText}`);
       return NextResponse.json(
         { error: 'Image not found' },
         { status: response.status }
@@ -40,12 +45,10 @@ export async function GET(
     // Handle different image formats properly
     let contentType = originalContentType;
     if (!contentType || !contentType.startsWith('image/')) {
-      // If no content type or not an image type, try to determine from the response
       contentType = 'image/jpeg'; // Safe fallback
-      
-      // You could add more sophisticated detection here if needed
-      // For example, checking magic bytes of the image
     }
+
+    console.log(`[IMMICH PROXY] Success: ${Math.round(imageBuffer.byteLength / 1024)}KB, type: ${contentType}`);
 
     // Return the image with proper headers
     return new NextResponse(imageBuffer, {
@@ -59,7 +62,7 @@ export async function GET(
     });
 
   } catch (error) {
-    console.error('[IMMICH IMAGE] Error:', error);
+    console.error('[IMMICH PROXY] Error:', error);
     return NextResponse.json(
       { error: 'Failed to fetch image' },
       { status: 500 }

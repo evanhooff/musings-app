@@ -21,7 +21,7 @@ export interface ClientPageProps {
   };
   data: { page: PageQuery["page"] };
   playlist?: SoundcloudPlaylist | null;
-  albums?: AlbumWithThumbnail | null;
+  albums?: AlbumWithThumbnail[] | null;
 }
 
 export default function ClientLandingPage(props: ClientPageProps) {
