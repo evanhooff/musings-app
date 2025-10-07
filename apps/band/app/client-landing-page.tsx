@@ -9,10 +9,10 @@ import Tour from './components/Tour';
 import Contact from './components/Contact';
 import SoundcloudPlayer from "./components/music/SoundcloudPlayer";
 import Nav from "./components/Nav";
+import Album from "./components/photo/Album";
+import type { AlbumWithThumbnail } from "../lib/immich";
 import type { PageQuery } from "../tina/__generated__/types";
 import type { SoundcloudPlaylist } from "soundcloud.ts";
-import type { AlbumResponseDto } from "@immich/sdk";
-import Album from "./components/photo/Album";
 
 export interface ClientPageProps {
   query: string;
@@ -21,7 +21,7 @@ export interface ClientPageProps {
   };
   data: { page: PageQuery["page"] };
   playlist?: SoundcloudPlaylist | null;
-  albums?: Partial<AlbumResponseDto>[] | null;
+  albums?: AlbumWithThumbnail | null;
 }
 
 export default function ClientLandingPage(props: ClientPageProps) {
