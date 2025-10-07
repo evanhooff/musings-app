@@ -2,13 +2,9 @@
 
 module.exports = {
   images: {
-    remotePatterns: [
+    localPatterns: [
       {
-        protocol: 'https',
-        hostname: 'mm-immich.gmta.nl',
-        port: '',
-        pathname: '/api/assets/**',
-        search: '',
+        pathname: '/api/images/**',
       },
     ],
   },

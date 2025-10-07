@@ -3,7 +3,8 @@ import { AlbumResponseDto, type AssetResponseDto, getAllAlbums, getAssetInfo, in
 
 const API_KEY = process.env.IMMICH_API_KEY || "";
 const BASE_URL = process.env.IMMICH_BASE_URL || "";
-const THUMBNAIL_SRC = (assetId: string) => `${BASE_URL}/assets/${assetId}/thumbnail?size=thumbnail`;
+// Use our custom image API route that handles the API key server-side
+const THUMBNAIL_SRC = (assetId: string) => `/api/images/${assetId}?size=thumbnail`;
 
 export type AlbumWithThumbnail = {
     id: AlbumResponseDto["id"];

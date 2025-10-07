@@ -35,7 +35,6 @@ export default async function Page({
     }
     return album;
   }));
-  console.log("Fetched albums with thumbnails:", thumbnails);
 
   return (
     <ClientLandingPage {...data} {...playlist} albums={albums} />
