@@ -1,13 +1,17 @@
 'use client';
 
 import { useEffect } from 'react';
-import { ClientPageProps } from '../client-landing-page';
 
-export default function ClientLandingPage(data: ClientPageProps['data']) {
+export interface NavElement {
+  id: string;
+  title: string;
+}
+
+export default function Nav({ sections }: { sections: NavElement[] | null }) {
   
   useEffect(() => {
     // Only run if data exists
-    if (!data || !data.page) return;
+    if (!sections) return;
 
     // Smooth scroll for navigation
     const handleScroll = (e: Event) => {
@@ -30,7 +34,7 @@ export default function ClientLandingPage(data: ClientPageProps['data']) {
         link.removeEventListener('click', handleScroll);
       });
     };
-  }, [data]);
+  }, [sections]);
 
   return (
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
@@ -40,18 +44,15 @@ export default function ClientLandingPage(data: ClientPageProps['data']) {
               MISSES MONDAY
             </div>
             <div className="hidden md:flex space-x-8">
-                  <a
-                    href={`#agenda`}
-                    className="text-white/70 hover:text-white transition-colors duration-300 hover:text-purple-400"
-                  >
-                    Agenda
-                  </a>
-                  <a
-                    href={`#contact`}
-                    className="text-white/70 hover:text-white transition-colors duration-300 hover:text-purple-400"
-                  >
-                    Contact
-                  </a>
+                  {sections?.map((section: { id: string; title: string }) => (
+                    <a
+                      key={section.id}
+                      href={`#${section.id}`}
+                      className="text-white/70 hover:text-white transition-colors duration-300 hover:text-purple-400"
+                    >
+                      {section.title}
+                    </a>
+                  ))}
             </div>
           </div>
         </div>

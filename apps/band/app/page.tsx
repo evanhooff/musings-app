@@ -28,13 +28,6 @@ export default async function Page({
 
   await initImmich();
   const albums = await fetchImmichAlbums();
-  const thumbnails = await Promise.all((albums ?? []).map(async (album) => {
-    if (album.albumThumbnailAssetId) {
-      const thumbnail = await fetchAlbumThumbnail({ id: album.albumThumbnailAssetId });
-      return { ...album, thumbnail };
-    }
-    return album;
-  }));
 
   return (
     <ClientLandingPage {...data} {...playlist} albums={albums} />

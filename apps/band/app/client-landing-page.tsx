@@ -1,7 +1,6 @@
 'use client';
 
 import { useTina } from "tinacms/dist/react";
-import { useEffect } from 'react';
 import About from './components/About';
 import Hero from './components/Hero';
 import Music from './components/music/Music';
@@ -13,6 +12,7 @@ import Album from "./components/photo/Album";
 import type { AlbumWithThumbnail } from "../lib/immich";
 import type { PageQuery } from "../tina/__generated__/types";
 import type { SoundcloudPlaylist } from "soundcloud.ts";
+import type { NavElement } from "./components/Nav";
 
 export interface ClientPageProps {
   query: string;
@@ -50,32 +50,14 @@ export default function ClientLandingPage(props: ClientPageProps) {
 
   const { hero, about, music, agenda, contact, musicPlayer, isValid } = usePageSections(data);
 
-  useEffect(() => {
-    // Only run if data exists
-    if (!data || !data.page) return;
-
-    // Smooth scroll for navigation
-    const handleScroll = (e: Event) => {
-      e.preventDefault();
-      const target = (e.target as HTMLAnchorElement).getAttribute('href');
-      if (target) {
-        document.querySelector(target)?.scrollIntoView({
-          behavior: 'smooth'
-        });
-      }
-    };
-
-    const navLinks = document.querySelectorAll('a[href^="#"]');
-    navLinks.forEach(link => {
-      link.addEventListener('click', handleScroll);
-    });
-
-    return () => {
-      navLinks.forEach(link => {
-        link.removeEventListener('click', handleScroll);
-      });
-    };
-  }, [data]);
+  const navSections: NavElement[] = [
+    hero && { id: "hero", title: "Home" },
+    agenda && { id: "agenda", title: "Agenda" },
+    props.albums && props.albums.length > 0 && { id: "photos", title: "Photos" },
+    music && { id: "music", title: "Music" },
+    about && { id: "about", title: "About" },
+    contact && { id: "contact", title: "Contact" },
+  ].filter((section): section is NavElement => !!section);
 
 
   if (!isValid) {
@@ -87,8 +69,8 @@ export default function ClientLandingPage(props: ClientPageProps) {
   }
   return (
     <main className="min-h-screen bg-black text-white overflow-hidden">
-      <Nav {...data} />
-      <header>
+      <Nav sections={navSections} />
+      <header id="hero">
         {/* Hero Section */}
         {hero && 
           <Hero {...hero} />
@@ -102,7 +84,7 @@ export default function ClientLandingPage(props: ClientPageProps) {
 
       {/* Photos Section */}
       { props.albums && props.albums.length > 0 &&
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6 py-8">
+        <div id="photos" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6 py-8">
           {props.albums?.map((album, idx) => (
             <div key={album.id ?? idx}>
               <Album album={album} />

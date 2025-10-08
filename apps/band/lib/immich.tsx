@@ -44,12 +44,3 @@ export async function fetchImmichAlbums() {
         console.error("Error fetching Immich albums:", error);
     }
 }
-
-export async function fetchAlbumThumbnail({ id }: { id: string }) {
-    try {
-        const thumbnail = await getAssetInfo({ id });
-        return thumbnail
-    } catch (error) {
-        console.error("Error fetching Immich albums:", error);
-    }
-}
