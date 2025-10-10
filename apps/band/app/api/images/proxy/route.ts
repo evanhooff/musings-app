@@ -4,6 +4,7 @@ const IMMICH_API_KEY = process.env.IMMICH_API_KEY || '';
 
 export async function GET(request: NextRequest) {
   try {
+    console.log('[IMMICH PROXY] Received request', request.url);
     const searchParams = request.nextUrl.searchParams;
     
     // Get the encoded Immich URL from the client

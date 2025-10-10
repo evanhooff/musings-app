@@ -19,8 +19,16 @@ const Album: React.FC<AlbumProps> = ({ album }) => {
                     unoptimized
                 />
             )}
-            <h3 className="text-lg font-semibold mb-2">{album.albumName ?? "Untitled Album"}</h3>
-            <p className="text-white/70 mb-2">{album.description ?? ""}</p>
+            <div className="w-full max-w-xs text-center">
+                <h3 className="text-lg font-semibold mb-2 break-words">{album.albumName ?? "Untitled Album"}</h3>
+                <p className="text-white/70 mb-2 break-words">{album.description ?? ""}</p>
+            </div>
+            <a
+                href={`/album/${album.id}`}
+                className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 hover:scale-105"
+            >
+                Meer foto's
+            </a>
         </div>
     );
 };

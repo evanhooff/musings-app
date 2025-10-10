@@ -53,9 +53,8 @@ export default function ClientLandingPage(props: ClientPageProps) {
   const navSections: NavElement[] = [
     hero && { id: "hero", title: "Home" },
     agenda && { id: "agenda", title: "Agenda" },
-    props.albums && props.albums.length > 0 && { id: "photos", title: "Photos" },
+    props.albums && props.albums.length > 0 && { id: "photos", title: "Fotos" },
     music && { id: "music", title: "Music" },
-    about && { id: "about", title: "About" },
     contact && { id: "contact", title: "Contact" },
   ].filter((section): section is NavElement => !!section);
 
@@ -68,7 +67,7 @@ export default function ClientLandingPage(props: ClientPageProps) {
     );
   }
   return (
-    <main className="min-h-screen bg-black text-white overflow-hidden">
+    <div>
       <Nav sections={navSections} />
       <header id="hero">
         {/* Hero Section */}
@@ -84,13 +83,23 @@ export default function ClientLandingPage(props: ClientPageProps) {
 
       {/* Photos Section */}
       { props.albums && props.albums.length > 0 &&
-        <div id="photos" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6 py-8">
-          {props.albums?.map((album, idx) => (
-            <div key={album.id ?? idx}>
-              <Album album={album} />
+        <section id="photos" className="py-24 px-6 relative">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              Foto Album
+            </h2>
+            <div className="flex flex-col md:flex-row justify-center items-center">
+                <div
+                id="photos"
+                className="flex flex-wrap justify-center items-stretch gap-8"
+                >
+                {props.albums?.map((album, idx) => (
+                    <Album key={album.id ?? idx} album={album} />
+                ))}
+                </div>
             </div>
-          ))}
-        </div>
+          </div>
+        </section>
       }
 
       <section id="music" className="bg-gradient-to-b from-black to-gray-900">
@@ -118,6 +127,6 @@ export default function ClientLandingPage(props: ClientPageProps) {
           <p>&copy; 2024 Misses Monday. All rights reserved.</p>
         </div>
       </footer>
-    </main>
+    </div>
   );
 }

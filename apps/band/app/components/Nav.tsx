@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect } from 'react';
 
 export interface NavElement {
@@ -10,9 +11,6 @@ export interface NavElement {
 export default function Nav({ sections }: { sections: NavElement[] | null }) {
   
   useEffect(() => {
-    // Only run if data exists
-    if (!sections) return;
-
     // Smooth scroll for navigation
     const handleScroll = (e: Event) => {
       e.preventDefault();
@@ -41,19 +39,23 @@ export default function Nav({ sections }: { sections: NavElement[] | null }) {
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              <Link href="/">
               MISSES MONDAY
+              </Link>
             </div>
-            <div className="hidden md:flex space-x-8">
-                  {sections?.map((section: { id: string; title: string }) => (
-                    <a
-                      key={section.id}
-                      href={`#${section.id}`}
-                      className="text-white/70 hover:text-white transition-colors duration-300 hover:text-purple-400"
-                    >
-                      {section.title}
-                    </a>
-                  ))}
-            </div>
+            {sections && sections.length > 0 &&
+              <div className="hidden md:flex space-x-8">
+                    {sections?.map((section: { id: string; title: string }) => (
+                      <a
+                        key={section.id}
+                        href={`#${section.id}`}
+                        className="text-white/70 hover:text-white transition-colors duration-300 hover:text-purple-400"
+                      >
+                        {section.title}
+                      </a>
+                    ))}
+              </div>
+            }
           </div>
         </div>
       </nav>

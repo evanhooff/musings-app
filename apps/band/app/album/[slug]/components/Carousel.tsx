@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import Image from 'next/image';
 
@@ -30,7 +32,7 @@ const Carousel: React.FC<CarouselProps> = ({
     if (!images || images.length === 0) return null;
 
     return (
-        <div style={{ position: 'relative', width, height }}>
+        <div className="relative w-full h-full flex items-center justify-center">
             <Image
                 src={images[current].src}
                 alt={images[current].alt || 'carousel image'}
@@ -80,7 +82,7 @@ const Carousel: React.FC<CarouselProps> = ({
             <div
                 style={{
                     position: 'absolute',
-                    bottom: 10,
+                    bottom: 50,
                     left: '50%',
                     transform: 'translateX(-50%)',
                     display: 'flex',

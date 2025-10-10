@@ -1,5 +1,5 @@
 import useSoundcloud from "../lib/soundcloud";
-import { initImmich, fetchImmichAlbums, fetchAlbumThumbnail } from "../lib/immich";
+import { initImmich, getAlbums } from "../lib/immich";
 import client from "../tina/__generated__/client";
 import ClientLandingPage from "./client-landing-page";
 
@@ -27,7 +27,7 @@ export default async function Page({
   const playlist = playlistUrl ? await useSoundcloud({ url: playlistUrl }) : null;
 
   await initImmich();
-  const albums = await fetchImmichAlbums();
+  const albums = await getAlbums();
 
   return (
     <ClientLandingPage {...data} {...playlist} albums={albums} />

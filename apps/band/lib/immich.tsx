@@ -1,5 +1,5 @@
 import 'server-only'
-import { AlbumResponseDto, type AssetResponseDto, getAllAlbums, getAssetInfo, init } from "@immich/sdk";
+import { AlbumResponseDto, type AssetResponseDto, getAlbumInfo, getAllAlbums, getAssetInfo, init } from "@immich/sdk";
 
 const API_KEY = process.env.IMMICH_API_KEY || "";
 const BASE_URL = process.env.IMMICH_BASE_URL || "";
@@ -19,6 +19,16 @@ export type AlbumWithThumbnail = {
     thumbnail?: AssetResponseDto | null;
 }
 
+export type AssetSrc = {
+    originalFileName?: string;
+    thumbnailSrc?: string | null;
+    proxySrc?: string | null;
+}
+
+export type AlbumInfoWithAssets = AlbumResponseDto & {
+    images: AssetSrc[];
+}
+
 export async function initImmich() {
     try {
         await init({ baseUrl: BASE_URL, apiKey: API_KEY });
@@ -28,9 +38,9 @@ export async function initImmich() {
     }
 }
 
-export async function fetchImmichAlbums() {
+export async function getAlbums() {
     try {
-        const albums = await getAllAlbums({});
+        const albums = await getAllAlbums({ shared: true });
         return albums.map(album => {
             return {
                 id: album.id,
@@ -42,5 +52,22 @@ export async function fetchImmichAlbums() {
         });
     } catch (error) {
         console.error("Error fetching Immich albums:", error);
+    }
+}
+
+export async function getAlbum(albumId: string): Promise<AlbumInfoWithAssets | undefined> {
+    try {
+        const album = await getAlbumInfo({ id: albumId });
+        const images = album.assets.map(asset => ({
+            originalFileName: asset.originalFileName,
+            thumbnailSrc: getImgSrc(asset.id),
+            proxySrc: getImgSrc(asset.id, 'preview'),
+        }));
+        return {
+            ...album,
+            images
+        };
+    } catch (error) {
+        console.error("Error fetching Immich album info:", error);
     }
 }

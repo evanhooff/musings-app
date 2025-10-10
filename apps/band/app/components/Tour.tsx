@@ -32,32 +32,39 @@ export default function agenda(agenda: PageQuery["page"]["agenda"]) {
                         <div className="text-white/70">Starttijd: {show.showTime} - {show.duration}</div>
                       </div>
                     }
-                    {show && show.eventUrl && (
-                      <a
-                        href={show.eventUrl}
-                        className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 hover:scale-105"
-                      >
-                        Meer info
-                      </a>
+                
+                    {show && (show.eventUrl || show.photoLink) && (
+                      <div className="flex flex-col gap-2 text-center">
+                        {show.eventUrl && (
+                          <a
+                            href={show.eventUrl}
+                            target="_blank"
+                            className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 hover:scale-105"
+                          >
+                            Meer info
+                          </a>
+                        )}
+                        {show.photoLink && (
+                          <a
+                            href={`album/${show.photoLink}`}
+                            className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 hover:scale-105"
+                          >
+                            Foto's
+                          </a>
+                        )}
+                      </div>
                     )}
-                  {show && show.image && (
-                    <div className="relative flex items-start justify-center h-96">
-                      <img 
-                        src={show.image} 
-                        alt="Event Poster" 
-                        className="w-full h-96 object-contain object-top rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-500"
-                      />
-                      
-                    </div>
-                  )}
-                  {show && show.photoLink && (
-                    <a
-                      href={show.photoLink}
-                      className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 hover:scale-105"
-                    >
-                      Meer foto's
-                    </a>
-                  )}
+
+                    {show && show.image && (
+                      <div className="relative flex items-start justify-center h-96">
+                        <img 
+                          src={show.image} 
+                          alt="Event Poster" 
+                          className="w-full h-96 object-contain object-top rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-500"
+                        />
+                        
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
