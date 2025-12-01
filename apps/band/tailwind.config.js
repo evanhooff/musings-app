@@ -5,7 +5,15 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    fontFamily: {
+       'serif': ['Glass Antiqua', 'Georgia'],
+    },
     extend: {},
   },
   plugins: [],
+  variants: {
+    extend: {
+      fontFamily: ['hover', 'focus'],
+    }
+  }
 }

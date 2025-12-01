@@ -1,4 +1,5 @@
 import { AssetSrc, getAlbum, getAlbums, initImmich } from "../../../lib/immich";
+import { HeaderText } from "../../components/HeaderText";
 import Nav from "../../components/Nav";
 import Album from "../../components/photo/Album";
 import Carousel from "./components/Carousel";
@@ -20,7 +21,7 @@ export default async function Page(props: PageProps<'/album/[slug]'>) {
   return (
     <div>
       <Nav sections={null} />
-      <h1>Albums: {slug}</h1>
+      <HeaderText size={1} text={'Albums: ' + slug} />
 
       {/* Album assets */}
       { albumInfo && albumInfo.assets && albumInfo.assets.length > 0 &&

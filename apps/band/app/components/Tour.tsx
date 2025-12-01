@@ -1,4 +1,5 @@
 import type { PageQuery } from "../../tina/__generated__/types";
+import { HeaderText } from "./HeaderText";
 
 export default function agenda(agenda: PageQuery["page"]["agenda"]) {
     if (!agenda) {
@@ -7,9 +8,8 @@ export default function agenda(agenda: PageQuery["page"]["agenda"]) {
     return (
         <section id="agenda" className="py-24 px-6">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              {agenda.title}
-            </h2>
+            
+            <HeaderText text={agenda.title} />
             { agenda?.dates && 
             
               <div className="space-y-4">
@@ -20,7 +20,7 @@ export default function agenda(agenda: PageQuery["page"]["agenda"]) {
                   >
                     { show && show.date &&
                       <div className="mb-4 md:mb-0">
-                        <div className="text-purple-400 font-bold text-lg">
+                        <div className="text-blue-400 font-bold text-lg">
                             {new Date(show.date).toLocaleDateString("nl-NL", {
                               weekday: "long",
                               year: "numeric",
@@ -39,7 +39,7 @@ export default function agenda(agenda: PageQuery["page"]["agenda"]) {
                           <a
                             href={show.eventUrl}
                             target="_blank"
-                            className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 hover:scale-105"
+                            className="button-51"
                           >
                             Meer info
                           </a>
@@ -47,7 +47,7 @@ export default function agenda(agenda: PageQuery["page"]["agenda"]) {
                         {show.photoLink && (
                           <a
                             href={`album/${show.photoLink}`}
-                            className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 hover:scale-105"
+                            className="button-51"
                           >
                             Foto's
                           </a>

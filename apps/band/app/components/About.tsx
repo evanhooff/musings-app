@@ -1,4 +1,5 @@
 import type { PageQuery } from "../../tina/__generated__/types";
+import { HeaderText } from "./HeaderText";
 
 export default function About(about: PageQuery["page"]["about"]) {
     if (!about) {
@@ -9,9 +10,8 @@ export default function About(about: PageQuery["page"]["about"]) {
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div>
-                <h2 className="text-5xl font-bold mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  {about.title}
-                </h2>
+                <HeaderText text={about.title} />
+
                 <div className="text-lg text-white/80 leading-relaxed space-y-4">
                   {about.content.split('\n').map((paragraph, index) => (
                     <p key={index}>{paragraph}</p>

@@ -3,6 +3,7 @@ import { useState } from "react";
 import SoundcloudIFrame from "./SoundcloudIFrame";
 import type { SoundcloudPlaylist } from "soundcloud.ts/dist/types";
 import type { PageQuery } from "../../../tina/__generated__/types";
+import { HeaderText } from "../HeaderText";
 
 export type SoundcloudPlayerProps = {
     playlist: SoundcloudPlaylist | null;
@@ -16,9 +17,8 @@ export default function SoundcloudPlayer({ playlist, content }: SoundcloudPlayer
 
     return (
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              {content?.title ? content.title : playlist.title}
-            </h2>
+            <HeaderText text={content?.title ? content.title : playlist.title} />
+
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {playlist.tracks.map((track, index) => {
                 const [showPlayer, setShowPlayer] = useState(false);
@@ -39,7 +39,7 @@ export default function SoundcloudPlayer({ playlist, content }: SoundcloudPlayer
                       <p className="mb-4">{track?.description}</p>
                         <button
                           onClick={() => setShowPlayer(true)}
-                          className="px-4 py-2 rounded-lg bg-purple-500 hover:bg-purple-600 transition-colors"
+                          className="px-4 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 transition-colors"
                         >
                           ▶ Play
                         </button>
@@ -166,7 +166,7 @@ export default function SoundcloudPlayer({ playlist, content }: SoundcloudPlayer
 //             <h3 className="font-semibold text-gray-800">{currentTrackData.title}</h3>
 //             <div className="flex items-center gap-4 text-sm text-gray-600 mt-1">
 //               <span className="flex items-center gap-1">
-//                 <Heart size={14} className="text-red-500" />
+//                 <Heart size={14} className="text-orange-500" />
 //                 {formatNumber(currentTrackData.likes_count)}
 //               </span>
 //               <span>{formatNumber(currentTrackData.playback_count)} plays</span>
@@ -212,7 +212,7 @@ export default function SoundcloudPlayer({ playlist, content }: SoundcloudPlayer
 //           </div>
 
 //           <div className="flex items-center gap-2">
-//             <button className="p-2 text-gray-600 hover:text-red-500 transition-colors">
+//             <button className="p-2 text-gray-600 hover:text-orange-500 transition-colors">
 //               <Heart size={20} />
 //             </button>
 //             <button className="p-2 text-gray-600 hover:text-orange-500 transition-colors">
@@ -282,7 +282,7 @@ export default function SoundcloudPlayer({ playlist, content }: SoundcloudPlayer
 //               </h4>
 //               <div className="flex items-center gap-3 text-sm text-gray-600 mt-1">
 //                 <span className="flex items-center gap-1">
-//                   <Heart size={12} className="text-red-500" />
+//                   <Heart size={12} className="text-orange-500" />
 //                   {formatNumber(track.likes_count)}
 //                 </span>
 //                 <span>{formatNumber(track.playback_count)} plays</span>

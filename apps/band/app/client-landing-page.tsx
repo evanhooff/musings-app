@@ -13,6 +13,7 @@ import type { AlbumWithThumbnail } from "../lib/immich";
 import type { PageQuery } from "../tina/__generated__/types";
 import type { SoundcloudPlaylist } from "soundcloud.ts";
 import type { NavElement } from "./components/Nav";
+import { HeaderText } from "./components/HeaderText";
 
 export interface ClientPageProps {
   query: string;
@@ -85,9 +86,8 @@ export default function ClientLandingPage(props: ClientPageProps) {
       { props.albums && props.albums.length > 0 &&
         <section id="photos" className="py-24 px-6 relative">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Foto Album
-            </h2>
+            
+            <HeaderText text="Foto Album" />
             <div className="flex flex-col md:flex-row justify-center items-center">
                 <div
                 id="photos"

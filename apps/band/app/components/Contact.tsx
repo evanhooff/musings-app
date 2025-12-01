@@ -1,4 +1,5 @@
 import type { PageQuery } from "../../tina/__generated__/types";
+import { HeaderText } from "./HeaderText";
 
 export default function Contact(contact: PageQuery["page"]["contact"]) {
     if (!contact) {
@@ -7,14 +8,14 @@ export default function Contact(contact: PageQuery["page"]["contact"]) {
     return (
         <section id="contact" className="py-24 px-6 bg-gradient-to-b from-black to-gray-900">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-5xl font-bold mb-16 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              {contact.title}
-            </h2>
+            
+            <HeaderText text={contact.title} />
+
             
             <div className="mb-12">
               <a 
                 href={`mailto:${contact.email}`}
-                className="text-2xl text-white hover:text-purple-400 transition-colors duration-300"
+                className="text-2xl text-white hover:text-blue-400 transition-colors duration-300"
               >
                 {contact.email}
               </a>
@@ -34,7 +35,7 @@ export default function Contact(contact: PageQuery["page"]["contact"]) {
                 {contact.social.youtube && (
                   <a 
                     href={contact.social.youtube}
-                    className="text-white/70 hover:text-red-400 transition-colors duration-300 transform hover:scale-110"
+                    className="text-white/70 hover:text-orange-400 transition-colors duration-300 transform hover:scale-110"
                   >
                     <span className="text-2xl">📺</span>
                   </a>

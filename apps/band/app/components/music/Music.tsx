@@ -1,4 +1,5 @@
 import type { PageQuery } from "../../../tina/__generated__/types";
+import { HeaderText } from "../HeaderText";
 
 export default function Music(music: PageQuery["page"]["music"]) {
     if (!music) {
@@ -8,16 +9,17 @@ export default function Music(music: PageQuery["page"]["music"]) {
         <section id="music" className="relative">
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-2 gap-16 items-center">
-              <div>
-                <h2 className="text-5xl font-bold mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  {music.title}
-                </h2>
-                <div className="text-lg text-white/80 leading-relaxed space-y-4">
-                  {music.content?.split('\n').map((paragraph, index) => (
-                    <p key={index}>{paragraph}</p>
-                  ))}
+             
+                <div> 
+                  {music.title && (
+                    <HeaderText text={music.title} />
+                  )}
+                  <div className="text-lg text-white/80 leading-relaxed space-y-4">
+                    {music.content?.split('\n').map((paragraph, index) => (
+                      <p key={index}>{paragraph}</p>
+                    ))}
+                  </div>
                 </div>
-              </div>
               {music.image && (
                 <div className="relative flex items-start justify-center h-96">
                   <img 
