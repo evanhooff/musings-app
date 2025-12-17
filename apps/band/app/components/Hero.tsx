@@ -8,7 +8,6 @@ export default function Hero(hero: PageQuery["page"]["hero"]) {
     }
     return (
        <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden border-b border-custom">
-      
                 {/* Animated Background Pattern */}
                 {hero.headerImage ? (
                 <div className="absolute inset-0 z-0">

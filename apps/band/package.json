@@ -20,7 +20,8 @@
     "soundcloud.ts": "^0.6.9",
     "tailwindcss": "^4.1.17",
     "tinacms": "^2.10.1",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "yet-another-react-lightbox": "^3.27.0"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",

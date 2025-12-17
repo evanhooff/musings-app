@@ -3,6 +3,7 @@ import React from "react";
 type HeaderTextProps = {
     text: string;
     size?: 1 | 2 | 3 | 4 | 5 | 6;
+    pageTitle?: boolean;
 };
 
 const sizeMap: Record<number, string> = {
@@ -16,17 +17,18 @@ const sizeMap: Record<number, string> = {
 
 export const HeaderText: React.FC<HeaderTextProps & { className?: string; gradient?: boolean }> = ({
     text,
+    pageTitle = false,
     size = 2,
     className = "",
     gradient = true,
 }) => {
-    const Tag = `h${size}` as keyof JSX.IntrinsicElements;
+    const Tag = pageTitle ? 'h1' : `h${size}` as keyof JSX.IntrinsicElements;
     const gradientClasses = gradient
         ? "bg-gradient-to-r from-blue-200 to-blue-900 bg-clip-text text-transparent"
         : "text-orange-600";
     return (
         <Tag
-            className={`font-serif tracking-widest text-center ${gradientClasses} ${sizeMap[size]} ${className}`}
+            className={`${className} font-serif tracking-widest text-center ${gradientClasses} ${sizeMap[size]}`}
         >
             {text}
         </Tag>

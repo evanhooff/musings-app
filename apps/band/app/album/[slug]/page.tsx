@@ -1,45 +1,59 @@
+
 import { AssetSrc, getAlbum, getAlbums, initImmich } from "../../../lib/immich";
 import { HeaderText } from "../../components/HeaderText";
 import Nav from "../../components/Nav";
 import Album from "../../components/photo/Album";
-import Carousel from "./components/Carousel";
+
+import Lightbox from "./components/Lightbox";
 
 export default async function Page(props: PageProps<'/album/[slug]'>) {
   const { slug } = await props.params
-  const query = await props.searchParams;
   
   await initImmich();
   const albums = await getAlbums();
 
   const defaultAlbum = albums?.find(album => album.id === slug) || albums?.[0] || null;
   const albumInfo = defaultAlbum ? await getAlbum(defaultAlbum.id) : undefined;
-  const photos = albumInfo?.images.map((img: AssetSrc) => ({
-    alt: img.originalFileName,
-    src: img.proxySrc ?? img.thumbnailSrc ?? '',
-  })) || [];
 
   return (
     <div>
-      <Nav sections={null} />
-      <HeaderText size={1} text={'Albums: ' + slug} />
-
-      {/* Album assets */}
-      { albumInfo && albumInfo.assets && albumInfo.assets.length > 0 &&
-          <div className="w-full h-dvh overflow-hidden">
-            <Carousel images={photos} />
+      <Nav sections={null} fixed={false} />
+      <div className="md:flex mx-auto gap-4 md:gap-12 md:my-12">
+          
+          {/* Header - shows first on mobile, top of right column on desktop */}
+          <div className="md:hidden">
+            <HeaderText className="!font-sans" pageTitle={true} size={6} text={albumInfo?.albumName || albumInfo?.id || "Untitled Album"} />
           </div>
-      }
-        
-      {/* Album overview */}
-      { albums && albums.length > 0 &&
-        <div id="photos" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6 py-8">
-          {albums?.map((album, idx) => (
-            <div key={album.id ?? idx}>
-              <Album album={album} />
+
+          <div className="w-full md:max-w-[50%]">
+            {/* Album assets */}
+            { albumInfo && albumInfo.assets && albumInfo.assets.length > 0 &&
+              <Lightbox albumImages={albumInfo?.images ?? []} albumName={albumInfo?.albumName} />
+            }
+          </div>
+          <div className="md:text-left">
+
+            <div className="hidden md:block">
+              <HeaderText size={3} text={'Photo Album'} className="md:text-left" />
+              <span className="text-white/70 text-lg md:text-xl">
+                {albumInfo?.albumName ?? "Untitled Album"}
+              </span>
+              <p className="text-white/60 mt-4 mb-8">
+                {albumInfo?.description ?? "No description available."}
+              </p>
             </div>
-          ))}
-        </div>
-      }
+            {/* Album overview */}
+            { albums && albums.length > 0 &&
+              <div id="photos" className="py-8">
+                  {albums?.filter(album => album.id !== slug).map((album, idx) => (
+                    <div key={album.id ?? idx}>
+                        <Album album={album} view="compact" />
+                      </div>
+                  ))}
+              </div>
+            }
+          </div>
+      </div>
     </div>
   )
 }

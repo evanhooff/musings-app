@@ -90,8 +90,8 @@ export default function ClientLandingPage(props: ClientPageProps) {
             <HeaderText text="Foto Album" />
             <div className="flex flex-col md:flex-row justify-center items-center">
                 <div
-                id="photos"
-                className="flex flex-wrap justify-center items-stretch gap-8"
+                  id="photos"
+                  className="flex flex-wrap justify-center items-stretch gap-8"
                 >
                 {props.albums?.map((album, idx) => (
                     <Album key={album.id ?? idx} album={album} />
