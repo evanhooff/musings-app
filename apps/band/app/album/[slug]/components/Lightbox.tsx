@@ -15,25 +15,27 @@ export default function LightboxComponent({ albumImages, albumName }: { albumIma
         src: `${typeof window !== 'undefined' ? window.location.origin : ''}${img.proxySrc ?? img.thumbnailSrc ?? ''}` 
     }));
   return (
-    <>
-        <Image
-            src={albumImages[0]?.thumbnailSrc ?? ""}
-            alt={albumName ?? "Album cover"}
-            className="w-48 h-48 object-cover rounded mb-4"
-            width={192}
-            height={192}
-            onClick={() => setOpen(true)}
-        />
-        <button type="button" onClick={() => setOpen(true)}>
-            Open Lightbox
-        </button>
+      <>
+        <div className='relative h-100 cursor-pointer'>
+            <Image
+                src={albumImages[0]?.proxySrc ?? ""}
+                alt={albumName ?? "Album cover"}
+                className="w-full mb-4"
+                objectFit="cover"
+                fill={true}
+                onClick={() => setOpen(true)}
+            />
+            <button type="button" onClick={() => setOpen(true)}>
+                Open Lightbox
+            </button>
+        </div>
     
         <Lightbox
             open={open}
             close={() => setOpen(false)}
             slides={slides}
             render={{ slide: LightboxImage }}
-        />
-    </>
+            />
+      </>
   )
 }

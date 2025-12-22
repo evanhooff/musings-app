@@ -21,7 +21,7 @@ export default async function Page(props: PageProps<'/album/[slug]'>) {
       <div className="md:flex mx-auto gap-4 md:gap-12 md:my-12">
           
           {/* Header - shows first on mobile, top of right column on desktop */}
-          <div className="md:hidden">
+          <div className="md:hidden px-4">
             <HeaderText className="!font-sans" pageTitle={true} size={6} text={albumInfo?.albumName || albumInfo?.id || "Untitled Album"} />
           </div>
 
@@ -31,7 +31,7 @@ export default async function Page(props: PageProps<'/album/[slug]'>) {
               <Lightbox albumImages={albumInfo?.images ?? []} albumName={albumInfo?.albumName} />
             }
           </div>
-          <div className="md:text-left">
+          <div className="md:text-left px-4">
 
             <div className="hidden md:block">
               <HeaderText size={3} text={'Photo Album'} className="md:text-left" />
@@ -42,7 +42,7 @@ export default async function Page(props: PageProps<'/album/[slug]'>) {
                 {albumInfo?.description ?? "No description available."}
               </p>
             </div>
-            {/* Album overview */}
+            {/* Other albums overview */}
             { albums && albums.length > 0 &&
               <div id="photos" className="py-8">
                   {albums?.filter(album => album.id !== slug).map((album, idx) => (
