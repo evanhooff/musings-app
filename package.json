@@ -13,14 +13,14 @@
     "release": "turbo run build --filter=docs^... && changeset publish"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.29.3",
+    "@changesets/cli": "^2.29.8",
     "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
     "@repo/prettier-config": "workspace:*",
-    "@vercel/style-guide": "^5.0.0",
-    "prettier": "^3.3.0",
+    "@repo/typescript-config": "workspace:*",
+    "@vercel/style-guide": "^6.0.0",
+    "prettier": "^3.7.4",
     "syncpack": "^13.0.4",
-    "turbo": "^2.5.3"
+    "turbo": "^2.7.2"
   },
   "engines": {
     "node": ">=20"
