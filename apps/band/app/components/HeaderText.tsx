@@ -22,7 +22,7 @@ export const HeaderText: React.FC<HeaderTextProps & { className?: string; gradie
     className = "",
     gradient = true,
 }) => {
-    const Tag = pageTitle ? 'h1' : `h${size}` as keyof JSX.IntrinsicElements;
+    const Tag = pageTitle ? 'h1' : `h${size}` as React.ElementType;
     const gradientClasses = gradient
         ? "bg-gradient-to-r from-blue-200 to-blue-900 bg-clip-text text-transparent"
         : "text-orange-600";
